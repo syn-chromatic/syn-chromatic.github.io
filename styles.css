@@ -1,0 +1,287 @@
+$menuWidth: 14em;
+$menuPaddingLeft: 3em;
+
+
+/* Base styles for everything */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles for the dark theme */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    line-height: 1.6;
+    background: #282c34; /* Dark background color */
+    color: #f5f5f5; /* Light text color for contrast */
+    font-size: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styles */
+header {
+    background: #282c34; /* Dark header background color */
+    color: #fff;
+    text-align: center;
+    padding: 2em 0;
+    margin-bottom: 2em;
+    font-size: 2.5em;
+    font-weight: 300;
+    width: 80%;
+    border-radius: 15px; /* Increased border-radius for rounded corners */
+    border: none; /* Removed border for cleaner look */
+}
+
+/* Anchor styles */
+a {
+    color: #1ABC9C;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #16a085;
+    text-decoration: underline;
+}
+
+
+.section-header {
+    background-color: #2a2a2a; /* Background color */
+    color: #f5f5f5; /* Text color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 10px 20px; /* Padding around the text */
+    margin-top: 20px; /* Space below the header */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+
+/* Project styles */
+.project {
+    margin-bottom: 2em;
+    padding: 2em;
+    background-color: #393939; /* Darker background */
+    border-radius: 15px; /* Increased border-radius for rounded corners */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); /* Pronounced box shadow */
+    transition: all 0.8s ease-out;
+    border: none; /* Removed border for cleaner look */
+    color: #f5f5f5; /* Light text color for contrast */
+}
+
+
+.project:hover {
+    background: #252525; /* Slightly change the background on hover */
+    transform: translateX(10px); /* Slide item to the right */
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in;
+}
+
+.project h3 {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    border-bottom: 2px solid #1ABC9C;
+    display: inline-block;
+    padding-bottom: 0.3em;
+}
+
+.project-content {
+    margin-bottom: 1em;
+    line-height: 1.4;
+}
+
+.about-me, .projects, .languages-tools {
+    padding: 0em;
+    padding-bottom: 1em;
+    text-align: center;
+    font-size: 1.2em;
+    width: 80%;
+    max-width: 960px; /* Limit the width */
+    margin: 1em auto; /* Center the boxes and add margin to top and bottom */
+    background: #222; /* Darker background for the content boxes */
+    border-radius: 30px; /* Increase the border radius for more rounded corners */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); /* Make the box shadow more pronounced */
+    border: none; /* Remove the border */
+    color: #f5f5f5; /* Light text color for contrast */
+    transition: all 0.8s ease-out;
+ }
+
+
+.about-me:hover, .projects:hover, .languages-tools:hover {
+    background: #2f2f2f; /* Slightly change the background on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); /* Increase the shadow on hover */
+    transition: all 0.2s ease-in;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em 0;
+}
+
+.language-grid,
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Two items per row */
+    gap: 1em;
+}
+
+.language-item,
+.tool-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2em; /* Space between list items */
+    padding: 0.5em;
+    background-color: #393939;
+    color: #f5f5f5;
+    border-radius: 20px; /* Slight rounding of corners */
+    transition: all 0.8s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle hover effect */
+.language-item:hover,
+.tool-item:hover {
+    background: #252525; /* Slightly change the background on hover */
+    transform: translateX(10px); /* Slide item to the right */
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in;
+}
+
+.language-item i,
+.tool-item i {
+    display: inline-block;
+    margin-right: 1em; /* Space between icon and text */
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.language-name,
+.tool-name {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+
+
+
+.sidebar {
+    position: fixed;
+    left: 1em;
+    top: 3em;
+    padding: 1em;
+    width: 200px; /* Width of the sidebar */
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000; /* Make sure it's on top */
+}
+
+/* Table of Contents styles */
+.table-of-contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.table-of-contents ul ul {
+    padding-left: 2em;
+}
+
+.table-of-contents li a {
+    display: inline-block;
+    color: #777;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    padding: 0.5em;
+}
+
+.table-of-contents li.visible > a {
+    color: #333;
+    font-weight: bold;
+    border-left: 4px solid #3498db;
+    padding-left: 0.5em;
+}
+
+/* Marker styles */
+.toc-marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none; /* Make it not interfere with clicking */
+}
+
+.toc-marker path {
+    transition: all 0.4s ease;
+    stroke: #3498db; /* Set the color of the marker */
+    stroke-width: 2; /* Make the marker a bit thinner */
+    stroke-linecap: round; /* Round the ends of the marker */
+    stroke-linejoin: round; /* Round the corners of the marker */
+}
+
+.devicon-python-plain:before,
+.devicon-rust-plain:before,
+.devicon-cpp-plain:before,
+.devicon-c-plain:before,
+.devicon-java-plain:before,
+.devicon-sqlite-plain:before,
+.devicon-vscode-plain:before,
+.devicon-intellij-plain:before,
+.devicon-vtune-plain:before,
+.devicon-sqlalchemy-plain:before,
+.devicon-docker-plain:before {
+    content: "";
+    background-size: contain;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.devicon-python-plain:before {
+    background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg");
+}
+
+.devicon-rust-plain:before {
+    background-image: url("https://www.rust-lang.org/logos/rust-logo-512x512.png");
+}
+
+.devicon-cpp-plain:before {
+    background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg");
+}
+
+.devicon-c-plain:before {
+    background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg");
+}
+
+.devicon-sqlite-plain:before {
+    background-image: url("https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/sqlite/sqlite-original.svg");
+}
+
+.devicon-intellij-plain:before {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png");
+}
+
+.devicon-vtune-plain:before {
+    background-image: url("https://www.intel.com/content/dam/develop/external/us/en/images/vtune-logo-oneapi-2021.png");
+}
+
+.devicon-sqlalchemy-plain:before {
+    background-image: url("https://avatars.githubusercontent.com/u/6043126?v=4");
+}
+
+.devicon-java-plain:before {
+    background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg");
+}
+
+.devicon-vscode-plain:before {
+    background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg");
+}
+
+.devicon-docker-plain:before {
+    background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg");
+}
