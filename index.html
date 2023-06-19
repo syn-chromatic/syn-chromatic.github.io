@@ -12,6 +12,18 @@
 <body>
 
 
+<aside class="top-bar">
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pages/about.html">About</a></li>
+            <li><a href="pages/services.html">Services</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</aside>
+
+
 <aside class="sidebar">
     <nav class="table-of-contents">
         <ul>
@@ -20,7 +32,10 @@
             <li><a href="#projects">Projects</a></li>
             <ul>
                 <li><a href="#timer-module">Timer Module</a></li>
+                <li><a href="#rpi-lcd-menu">RPi LCD Menu</a></li>
+                <li><a href="#discord-bg-removal">Discord BG Removal</a></li>
                 <li><a href="#levenshtein-distance">Levenshtein</a></li>
+                <li><a href="#custom-game-engine">Custom Game Engine</a></li>
             </ul>
         </ul>
         <svg class="toc-marker" height="200" width="200" xmlns="http://www.w3.org/2000/svg">
@@ -119,26 +134,72 @@
         <h2 class="section-header">Projects</h2>
 
         <div class="project" id="timer-module">
-            <h3>Timer Module and Profiler</h3>
-            <a href="https://github.com/yourusername/timer-module" target="_blank">Repo</a>
+            <h4>Timer Module and Profiler</h4>
+            <a href="https://github.com/yourusername/timer-module" target="_blank">Repository</a>
             <p>
                 A Python project that combines a timer module and a custom profiler to analyze and optimize the
-                performance of your code. The timer module helps track the execution time of specific code blocks, while
+                performance of your code.
+                <br></br>
+                The timer module helps track the execution time of specific code blocks, while
                 the custom profiler provides insights into the function calls and their performance.
             </p>
         </div>
 
+        <div class="project" id="rpi-lcd-menu">
+            <h4>RPi LCD Menu</h4>
+            <a href="https://github.com/syn-chromatic/rpi-lcd-menu" target="_blank">Repository</a>
+            <p>
+                A Python project that enables the creation and navigation of interactive menus on a Character
+                LCD module.
+                <br></br>
+                The project is highly versatile and can be employed in various scenarios like home automation systems.
+            </p>
+        </div>
+
+
+        <div class="project" id="discord-bg-removal">
+            <h4>Discord Bot Automatic Background Removal</h4>
+            <a href="https://github.com/syn-chromatic/discord-bg-removal-bot" target="_blank">Repository</a>
+            <p>
+                A powerful tool that leverages machine learning to seamlessly remove backgrounds from images,
+                and videos.
+                <br></br>
+                In the case of videos or animated images, it deconstructs the input into frames, processes
+                each frame individually, and reconstructs it with the background removed, without requiring
+                any input from the user to outline the background, which makes it a perfect fit for a Discord Bot.
+            </p>
+        </div>
+
+
         <div class="project" id="levenshtein-distance">
-            <h3>Levenshtein Algorithm</h3>
-            <a href="https://github.com/syn-chromatic/levenshtein-distance" target="_blank">Repo</a>
+            <h4>Levenshtein Algorithm</h4>
+            <a href="https://github.com/syn-chromatic/levenshtein-distance" target="_blank">Repository</a>
             <p>
                 A Python project that implements the Levenshtein distance algorithm to measure
-                the similarity between two strings. The algorithm calculates the minimum number
-                of single-character edits (insertions, deletions, or substitutions) required to transform
-                one string into another. This efficient and versatile algorithm has applications in fields
+                the similarity between two strings.
+                <br></br>
+                The algorithm calculates the minimum number of single-character edits
+                (insertions, deletions, or substitutions) required to transform one string into another.
+                <br></br>
+                This efficient and versatile algorithm has applications in fields
                 such as natural language processing, data cleansing, spell checking, and search engines.
             </p>
         </div>
+
+
+        <div class="project" id="custom-game-engine">
+            <h4>Custom Game Engine</h4>
+            <a href="https://github.com/syn-chromatic/rust-g-engine" target="_blank">Repository</a>
+            <p>
+                A project built in Rust encompassing the development of a custom game engin.
+                <br></br>
+                The game engine simulates realistic movements and interactions between objects. Although unfinished,
+                this project serves as an educational venture to deepen understanding of physics simulations and to
+                put my software development skills to test.
+            </p>
+        </div>
+
+
     </div>
 </section>
 
