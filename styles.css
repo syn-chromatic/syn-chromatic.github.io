@@ -83,7 +83,7 @@ a:hover {
 }
 
 .project:hover {
-	background: #252525;
+	background: #202020;
 	transform: translateX(10px);
 	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
 	transition: all 0.2s ease-in;
@@ -181,7 +181,7 @@ a:hover {
 
 .language-item:hover,
 .tool-item:hover {
-	background: #252525;
+	background: #202020;
 	transform: translateX(10px);
 	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
 	transition: all 0.2s ease-in;
@@ -290,23 +290,17 @@ a:hover {
 
 .navigation-bar a {
 	text-decoration: none;
-	/* Removes the underline from the links */
 	color: #c8c8c8;
-	/* Text color of the links */
 	font-weight: bold;
-	/* Makes the text bold */
 	padding: 5px 10px;
-	/* Adds some padding around the text */
 	border-radius: 5px;
-	/* Rounded corners for each link */
-	transition: background-color 0.3s;
-	/* Smooth transition for hover effect */
+	transition: background-color 1s;
 }
 
-/* Styling for the links when hovered */
+
 .navigation-bar a:hover {
 	background-color: var(--RedAccent1);
-	/* Red background on hover with transparency */
+	padding: 10px
 }
 
 
