@@ -68,6 +68,14 @@ a:hover {
 	border-right: 3px solid var(--RedAccent1);
 }
 
+.sidebar h4 {
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
 
 .project {
 	margin-bottom: 2em;
@@ -255,7 +263,6 @@ a:hover {
 	padding-left: 0.5em;
 }
 
-
 .toc-marker {
 	position: absolute;
 	padding: 0em;
@@ -273,9 +280,8 @@ a:hover {
 	stroke-width: 2;
 	stroke-linecap: round;
 	stroke-linejoin: round;
-	transform: translateY(12px);
+	transform: translateY(-12px);
 }
-
 
 .top-bar {
 	background-color: #191919;
