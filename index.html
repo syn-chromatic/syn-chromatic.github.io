@@ -6,7 +6,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Portfolio</title>
-    <link rel="icon" href="data:,">
+    <link href="data:," rel="icon">
     <link href="styles.css" rel="stylesheet">
 </head>
 
@@ -24,27 +24,33 @@
 </aside>
 
 
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
     <div class="sidebar-tab">Menu</div>
-    <h4 class="sidebar-header">Table Of Contents</h4>
-    <nav class="table-of-contents">
-        <ul>
-            <li><a href="#about-me">About Me</a></li>
-            <li><a href="#languages-tools">Languages & Tools</a></li>
-            <li><a href="#projects">Projects</a></li>
+
+    <div class="sidebar-content">
+        <h4 class="sidebar-header">Table Of Contents</h4>
+        <nav class="table-of-contents">
             <ul>
-                <li><a href="#timer-module">Timer Module</a></li>
-                <li><a href="#rpi-lcd-menu">RPi LCD Menu</a></li>
-                <li><a href="#discord-bg-removal">Discord BG Removal</a></li>
-                <li><a href="#levenshtein-distance">Levenshtein</a></li>
-                <li><a href="#custom-game-engine">Custom Game Engine</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#languages-tools">Languages & Tools</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <ul>
+                    <li><a href="#timer-module">Timer Module</a></li>
+                    <li><a href="#rpi-lcd-menu">RPi LCD Menu</a></li>
+                    <li><a href="#discord-bg-removal">Discord BG Removal</a></li>
+                    <li><a href="#levenshtein-distance">Levenshtein</a></li>
+                    <li><a href="#custom-game-engine">Custom Game Engine</a></li>
+                </ul>
             </ul>
-        </ul>
+        </nav>
+    </div>
+
+    <div class="toc-marker-container">
         <svg class="toc-marker" height="200" width="200" xmlns="http://www.w3.org/2000/svg">
             <path d="None" fill="transparent" stroke="#444" stroke-dasharray="0, 0, 0, 1000"
                   stroke-linecap="round" stroke-linejoin="round" stroke-width="3" transform="translate(-0.5, -0.5)"/>
         </svg>
-    </nav>
+    </div>
 </aside>
 
 

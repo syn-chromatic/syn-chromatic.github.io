@@ -14,8 +14,39 @@ var lastPathStart,
 
 window.addEventListener( 'resize', drawPath, false );
 window.addEventListener( 'scroll', sync, false );
+document.addEventListener("DOMContentLoaded", adjustSidebarContentHeight);
+window.addEventListener("resize", adjustSidebarContentHeight);
+
 
 drawPath();
+
+document.querySelector('.sidebar-content').addEventListener('scroll', function() {
+    var scrollTop = this.scrollTop;
+    var tocMarker = document.querySelector('.toc-marker');
+    tocMarker.style.transform = 'translateY(' + (-scrollTop) + 'px)';
+});
+
+
+function adjustSidebarContentHeight() {
+    var sidebar = document.querySelector('.sidebar');
+    var sidebarContent = document.querySelector('.sidebar-content');
+
+    if (sidebar && sidebarContent) {
+        // Get the height, padding, and border
+        var sidebarHeight = parseFloat(getComputedStyle(sidebar).height);
+        var paddingTop = parseFloat(getComputedStyle(sidebar).paddingTop);
+        var paddingBottom = parseFloat(getComputedStyle(sidebar).paddingBottom);
+        var borderTop = parseFloat(getComputedStyle(sidebar).borderTopWidth);
+        var borderBottom = parseFloat(getComputedStyle(sidebar).borderBottomWidth);
+
+        // Calculate the available height within the sidebar
+        var availableHeight = sidebarHeight - paddingTop - paddingBottom - borderTop - borderBottom;
+
+        // Set the max-height of the sidebar-content
+        sidebarContent.style.maxHeight = availableHeight + 'px';
+    }
+}
+
 
 function drawPath() {
 
@@ -73,7 +104,6 @@ function drawPath() {
   } );
 
   pathLength = tocPath.getTotalLength();
-
   sync();
 
 }
