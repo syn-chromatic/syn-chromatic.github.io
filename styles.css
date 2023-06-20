@@ -543,7 +543,6 @@ a:hover {
 		right: -18px;
 	}
 
-
 	.section-header {
 		font-size: 1em;
 	}
@@ -592,7 +591,6 @@ a:hover {
 	}
 }
 
-
 .devicon-python-plain:before,
 .devicon-rust-plain:before,
 .devicon-cpp-plain:before,
@@ -612,45 +610,45 @@ a:hover {
 }
 
 .devicon-python-plain:before {
-	background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg");
+	background-image: url("../images/icons/python-icon.svg");
 }
 
 .devicon-rust-plain:before {
-	background-image: url("https://www.rust-lang.org/logos/rust-logo-512x512.png");
+	background-image: url("../images/icons/rust-icon.png");
 }
 
 .devicon-cpp-plain:before {
-	background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg");
+	background-image: url("../images/icons/cplusplus-icon.svg");
 }
 
 .devicon-c-plain:before {
-	background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg");
-}
-
-.devicon-sqlite-plain:before {
-	background-image: url("https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/sqlite/sqlite-original.svg");
-}
-
-.devicon-intellij-plain:before {
-	background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png");
-}
-
-.devicon-vtune-plain:before {
-	background-image: url("https://www.intel.com/content/dam/develop/external/us/en/images/vtune-logo-oneapi-2021.png");
-}
-
-.devicon-sqlalchemy-plain:before {
-	background-image: url("https://avatars.githubusercontent.com/u/6043126?v=4");
+	background-image: url("../images/icons/c-icon.svg");
 }
 
 .devicon-java-plain:before {
-	background-image: url("https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg");
+	background-image: url("../images/icons/java-icon.svg");
+}
+
+.devicon-sqlite-plain:before {
+	background-image: url("../images/icons/sqlite-icon.svg");
 }
 
 .devicon-vscode-plain:before {
-	background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg");
+	background-image: url("../images/icons/vscode-icon.svg");
+}
+
+.devicon-intellij-plain:before {
+	background-image: url("../images/icons/intellij-idea-icon.png");
+}
+
+.devicon-vtune-plain:before {
+	background-image: url("../images/icons/vtune-icon.png");
+}
+
+.devicon-sqlalchemy-plain:before {
+	background-image: url("../images/icons/sqla-icon.png");
 }
 
 .devicon-docker-plain:before {
-	background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg");
+	background-image: url("../images/icons/docker-icon.svg");
 }
