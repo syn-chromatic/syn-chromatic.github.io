@@ -157,7 +157,6 @@ a:hover {
 	transition: all 0.8s ease-out;
 }
 
-
 .about-me:hover,
 .projects:hover,
 .languages-tools:hover {
@@ -232,6 +231,7 @@ a:hover {
 	border-radius: 15px;
 	z-index: 1000;
 	transition: left 0.5s;
+	transition: all 0.3s ease-in;
 }
 
 .sidebar-tab {
@@ -249,6 +249,7 @@ a:hover {
 	cursor: pointer;
 	z-index: 2;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease-in;
 }
 
 
@@ -410,6 +411,16 @@ a:hover {
 		font-size: 80%
 	}
 
+    .sidebar {
+        left: -280px;
+        transition: all 0.3s ease-in;
+    }
+
+    .sidebar-tab {
+        font-size: 0.9em;
+        right: -18px;
+        transition: all 0.3s ease-in;
+    }
 
 }
 
