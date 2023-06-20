@@ -40,7 +40,6 @@ body {
 	align-items: center;
 }
 
-
 header {
 	background: var(--HeaderBackground);
 	color: var(--HeaderColor);
@@ -53,7 +52,6 @@ header {
 	border-radius: 15px;
 	border: none;
 }
-
 
 a {
 	color: var(--RedAccent1);
@@ -170,6 +168,7 @@ a:hover {
 	margin: 0 auto;
 	padding: 1em 0;
 	color: #afafaf;
+	transition: all 0.5s ease-in;
 }
 
 .language-grid,
@@ -248,8 +247,8 @@ a:hover {
 	border-radius: 50px;
 	cursor: pointer;
 	z-index: 2;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease-in;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+	transition: all 0.3s ease-in;
 }
 
 
@@ -322,7 +321,6 @@ a:hover {
 	display: inline-block;
 	color: #777;
 	text-decoration: none;
-	transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
 	padding: 0.5em;
 }
 
@@ -386,13 +384,107 @@ a:hover {
 	font-weight: bold;
 	padding: 10px 10px;
 	border-radius: 5px;
-	transition: background-color 1s;
 }
-
 
 .navigation-bar a:hover {
 	background-color: var(--RedAccent1);
 }
+
+/* Setting Transitions */
+.language-grid,
+.tool-grid {
+	transition: all 0.5s ease-in;
+}
+
+.navigation-bar a {
+	transition: background-color 1s;
+}
+
+.navigation-bar li {
+	transition: all 0.5s ease-in;
+}
+
+.container {
+	transition: all 0.5s ease-in;
+}
+
+.sidebar {
+	transition: left 0.5s;
+	transition: all 0.3s ease-in;
+}
+
+.sidebar-tab {
+	transition: all 0.5s ease-in;
+}
+
+
+.section-header {
+	transition: all 0.5s ease-in;
+}
+
+.section-paragraph {
+	transition: all 0.5s ease-in;
+}
+
+.projects h4 {
+	transition: all 0.5s ease-in;
+}
+
+.projects a {
+	transition: all 0.5s ease-in;
+}
+
+.languages-tools span {
+	transition: all 0.5s ease-in;
+}
+
+.sidebar-header {
+	transition: all 0.5s ease-in;
+}
+
+.sidebar a {
+	transition: all 0.5s ease-in;
+}
+
+.table-of-contents li a {
+	transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+}
+
+.project {
+	transition: all 0.8s ease-out;
+}
+
+.project:hover {
+	transition: all 0.3s ease-in;
+}
+
+.project a:hover {
+	transition: all 0.3s ease-in;
+}
+
+.about-me,
+.projects,
+.languages-tools {
+	transition: all 0.8s ease-out;
+}
+
+.language-item:hover,
+.tool-item:hover {
+	transition: all 0.2s ease-in;
+}
+
+.language-item,
+.tool-item {
+	transition: all 0.8s ease-out;
+}
+
+.about-me:hover,
+.projects:hover,
+.languages-tools:hover {
+	transition: all 0.2s ease-in;
+}
+
+/* End Setting Transitions */
 
 
 @media screen and (max-width: 600px) {
@@ -405,23 +497,57 @@ a:hover {
 	.navigation-bar li {
 		margin-right: 5px;
 		font-size: 80%;
+		transition: all 0.5s ease-in;
 	}
 
 	.container {
-		font-size: 80%
+		font-size: 80% transition: all 0.5s ease-in;
 	}
 
-    .sidebar {
-        left: -280px;
-        transition: all 0.3s ease-in;
-    }
+	.sidebar {
+		left: -280px;
+		transition: all 0.5s ease-in;
+	}
 
-    .sidebar-tab {
-        font-size: 0.9em;
-        right: -18px;
-        transition: all 0.3s ease-in;
-    }
+	.sidebar-tab {
+		font-size: 0.9em;
+		right: -18px;
+		transition: all 0.5s ease-in;
+	}
 
+
+	.section-header {
+		font-size: 1em;
+		transition: all 0.5s ease-in;
+	}
+
+	.section-paragraph {
+		font-size: 0.8em;
+		transition: all 0.5s ease-in;
+	}
+
+	.projects h4 {
+		font-size: 0.8em;
+		transition: all 0.5s ease-in;
+	}
+
+	.projects a {
+		font-size: 0.8em;
+		transition: all 0.5s ease-in;
+	}
+
+	.languages-tools span {
+		font-size: 0.8em;
+		transition: all 0.5s ease-in;
+	}
+
+	.sidebar-header {
+		font-size: 0.8em;
+	}
+
+	.sidebar a {
+		font-size: 0.8em;
+	}
 }
 
 
