@@ -1,0 +1,54 @@
+
+@media screen and (max-width: 800px) {
+
+	.language-grid,
+	.tool-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.navigation-bar li {
+		margin-right: 5px;
+		font-size: 80%;
+	}
+
+	.container {
+		font-size: 80%;
+	}
+
+	.sidebar {
+		left: -280px;
+	}
+
+	.sidebar-tab {
+		font-size: 0.9em;
+		right: -18px;
+	}
+
+	.section-header {
+		font-size: 1em;
+	}
+
+	.section-paragraph {
+		font-size: 0.8em;
+	}
+
+	.projects h4 {
+		font-size: 0.8em;
+	}
+
+	.projects a {
+		font-size: 0.8em;
+	}
+
+	.languages-tools span {
+		font-size: 0.8em;
+	}
+
+	.sidebar-header {
+		font-size: 0.8em;
+	}
+
+	.sidebar a {
+		font-size: 0.8em;
+	}
+}

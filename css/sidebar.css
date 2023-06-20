@@ -1,0 +1,151 @@
+.sidebar {
+	position: fixed;
+	left: 1em;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 1.5em;
+	height: 85%;
+	width: 300px;
+	background-color: #191919;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	border-top: 3px solid var(--GreyAccent1);
+	border-right: 3px solid var(--GreyAccent1);
+	border-radius: 15px;
+	z-index: 1000;
+}
+
+.sidebar-content {
+	max-height: calc(100% - 3em);
+	overflow-y: auto;
+	height: 150%;
+}
+
+.sidebar-tab {
+	position: absolute;
+	top: 50%;
+	right: -20px;
+	text-shadow: #121212 3px 4px 5px;
+	transform: translate(24%, -50%) rotate(-90deg);
+	border-bottom: 3px solid var(--GreyAccent1);
+	border-top: 3px solid var(--GreyAccent1);
+	background-color: #393939;
+	padding-right: 1em;
+	padding-left: 1em;
+	border-radius: 50px;
+	cursor: pointer;
+	z-index: 2;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+	transition: all 0.3s ease-in;
+}
+
+.sidebar h4 {
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 1em;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.sidebar-header {
+	background-color: #393939;
+	color: var(--TextColorLight);
+	border-radius: 30px;
+	padding: 10px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.sidebar {
+	left: -275px;
+}
+
+.sidebar .sidebar-tab {
+	animation: spin-reverse 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+}
+
+.sidebar:hover {
+	left: 0;
+}
+
+.sidebar:hover .sidebar-tab {
+	animation: spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+
+}
+
+@keyframes spin-reverse {
+	from {
+		transform: translate(24%, -50%) rotate(-90deg);
+	}
+
+	to {
+		transform: translate(24%, -50%) rotate(-450deg);
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: translate(24%, -50%) rotate(-90deg);
+	}
+
+	to {
+		transform: translate(24%, -50%) rotate(270deg);
+	}
+}
+
+.table-of-contents ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.table-of-contents ul ul {
+	padding-left: 2em;
+}
+
+.table-of-contents li a {
+	display: inline-block;
+	color: #777;
+	text-decoration: none;
+	padding: 0.5em;
+}
+
+.table-of-contents li.visible>a {
+	color: #b5b5b5;
+	font-weight: bold;
+	border-left: 1px solid var(--GreyAccent2);
+	transform: translateY(6px);
+	padding-left: 0.5em;
+}
+
+.toc-marker {
+	position: absolute;
+	padding: 0em;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.toc-marker-container {
+	position: absolute;
+	top: -20px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	pointer-events: none;
+}
+
+
+.toc-marker path {
+	transition: all 0.4s ease;
+	stroke: var(--RedAccent1);
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	transform: translateY(12px);
+}

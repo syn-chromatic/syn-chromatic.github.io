@@ -4,6 +4,29 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--SideBarWidth: 14em;
+	--SideBarPaddingLeft: 3em;
+	--RedAccent1: #bf506c;
+	--GreyAccent1: #909090;
+	--GreyAccent2: #a5a5a5;
+	--GreyBlueAccent1: #282c34;
+	--BackgroundDark: #101010;
+	--TextColorLight: #f5f5f5;
+	--HeaderBackground: #282c34;
+	--HeaderColor: #fff;
+	--LinkHoverColor: #16a085;
+	--ProjectBackgroundHover: #505050;
+	--SectionHeaderBackground: #393939;
+	--SidebarHeaderBackground: #393939;
+	--ProjectBackground: #2a2a2a;
+	--ProjectTextColor: #afafaf;
+	--AboutMeBackground: #222;
+	--LanguageItemBackground: #2a2a2a;
+	--SidebarBackground: #191919;
+	--TopBarBackground: #191919;
+	--NavigationBarColor: #c8c8c8;
+}
 
 body {
 	font-family: 'Montserrat', Arial, sans-serif;
@@ -199,6 +222,7 @@ a:hover {
 	font-size: 0.8em;
 	font-weight: 600;
 }
+
 
 .sidebar {
 	position: fixed;
