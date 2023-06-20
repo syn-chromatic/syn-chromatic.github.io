@@ -487,7 +487,7 @@ a:hover {
 /* End Setting Transitions */
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
 	.language-grid,
 	.tool-grid {
@@ -497,48 +497,40 @@ a:hover {
 	.navigation-bar li {
 		margin-right: 5px;
 		font-size: 80%;
-		transition: all 0.5s ease-in;
 	}
 
 	.container {
-		font-size: 80% transition: all 0.5s ease-in;
+		font-size: 80%;
 	}
 
 	.sidebar {
 		left: -280px;
-		transition: all 0.5s ease-in;
 	}
 
 	.sidebar-tab {
 		font-size: 0.9em;
 		right: -18px;
-		transition: all 0.5s ease-in;
 	}
 
 
 	.section-header {
 		font-size: 1em;
-		transition: all 0.5s ease-in;
 	}
 
 	.section-paragraph {
 		font-size: 0.8em;
-		transition: all 0.5s ease-in;
 	}
 
 	.projects h4 {
 		font-size: 0.8em;
-		transition: all 0.5s ease-in;
 	}
 
 	.projects a {
 		font-size: 0.8em;
-		transition: all 0.5s ease-in;
 	}
 
 	.languages-tools span {
 		font-size: 0.8em;
-		transition: all 0.5s ease-in;
 	}
 
 	.sidebar-header {
@@ -548,6 +540,25 @@ a:hover {
 	.sidebar a {
 		font-size: 0.8em;
 	}
+
+    .project {
+        padding: 1em;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+
+	.project p {
+    	padding-top: 2em;
+    	padding-bottom: 2em;
+    	padding-right: 0.5em;
+    	padding-left: 0.5em;
+    	color: #afafaf;
+    	text-align: left;
+    	border-top: 4px solid #505050;
+    	border-bottom: 4px solid #505050;
+    	border-radius: 10px;
+    	text-shadow: #121212 3px 3px 10px;
+    }
 }
 
 
