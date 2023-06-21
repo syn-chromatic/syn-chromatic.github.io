@@ -87,7 +87,10 @@
 }
 
 .about-me-content {
-    border: 2px outset #5f5f5f;
+	border-top: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 10%);
+	border-bottom: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 50%);
+	border-right: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 50%);
+	border-left: 2px solid color-mix(in SRGB, var(--GreyAccent2), transparent 10%);
     border-radius: 30px;
     padding-top: 1em;
     padding-bottom: 1.2em;
@@ -155,7 +158,10 @@
 }
 
 .project-content {
-    border: 2px outset #5f5f5f;
+	border-top: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 10%);
+	border-bottom: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 50%);
+	border-right: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 50%);
+	border-left: 2px solid color-mix(in SRGB, var(--GreyAccent2), transparent 10%);
     border-radius: 30px;
     padding-top: 1em;
     padding-bottom: 1.2em;
@@ -184,10 +190,10 @@
 	color: #afafaf;
 	margin-top: 0;
 	margin-bottom: 20px;
-	border-top: 2px outset var(--GreyAccent1);
-	border-bottom: 2px outset var(--GreyAccent1);
-	border-right: 2px outset var(--GreyAccent1);
-	border-left: 2px outset var(--GreyAccent1);
+	border-top: 3px solid color-mix(in SRGB, var(--GreyAccent1), transparent 10%);
+	border-bottom: 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
+	border-right: 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
+	border-left: 3px solid color-mix(in SRGB, var(--GreyAccent1), transparent 10%);
 }
 
 .project p {
