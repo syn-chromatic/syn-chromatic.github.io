@@ -56,7 +56,7 @@
 }
 
 .sidebar.closed {
-	left : -275px;
+	left : -278px;
 }
 
 @media (hover: hover) {
@@ -71,8 +71,6 @@
 	.sidebar:hover .sidebar-tab {
 		animation : spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
 	}
-
-
 }
 
 @media (hover: none) {
