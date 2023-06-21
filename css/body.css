@@ -14,11 +14,10 @@
 	padding: 10px 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	border-bottom: 3px solid var(--GreyAccent1);
-	border-top: 3px outset var(--GreyAccent1);
-	border-bottom: 5px inset var(--RedAccent1);
-	border-right: 2px inset var(--RedAccent1);
-	border-left: 3px inset var(--GreyAccent1);
+	border-bottom: 5px solid color-mix(in SRGB, var(--RedAccent1), transparent 20%);
+	border-top: 3px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
+	border-right: 2px solid color-mix(in SRGB, var(--RedAccent1), transparent 40%);
+    border-left: 3px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
 	font-size: 1.2em;
 }
 
