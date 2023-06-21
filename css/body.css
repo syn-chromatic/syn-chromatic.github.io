@@ -16,9 +16,9 @@
 	margin-bottom: 20px;
 	border-bottom: 3px solid var(--GreyAccent1);
 	border-top: 3px outset var(--GreyAccent1);
-	border-bottom: 2px outset var(--RedAccent1);
-	border-right: 2px outset var(--RedAccent1);
-	border-left: 3px outset var(--GreyAccent1);
+	border-bottom: 5px inset var(--RedAccent1);
+	border-right: 2px inset var(--RedAccent1);
+	border-left: 3px inset var(--GreyAccent1);
 	font-size: 1.2em;
 }
 
@@ -70,7 +70,7 @@
 .languages-tools:hover,
 .projects:hover {
 	background: #2f2f2f;
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 	transition: all 0.2s ease-in;
 }
 
@@ -120,7 +120,7 @@
 .tool-item:hover {
 	background: #202020;
 	transform: translateX(10px);
-	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 	transition: all 0.2s ease-in;
 }
 
@@ -205,7 +205,7 @@
 .project:hover {
 	background: #202020;
 	transform: translateX(10px);
-	box-shadow: 0 5px 7px rgba(0, 0, 0, 0.15);
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 	transition: all 0.2s ease-in;
 }
 
