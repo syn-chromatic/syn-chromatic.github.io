@@ -23,7 +23,6 @@ document.addEventListener ('touchend', touchHandler, true);
 document.addEventListener ('touchcancel', touchHandler, true);
 
 function touchHandler (event) {
-  console.log (event);
   var touches = event.changedTouches, first = touches[0], type = '';
   switch (event.type) {
     case 'touchstart':
