@@ -24,9 +24,9 @@
             <div class="navigation-content">
                 <ul class="navigation-list">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="pages/explore.html">Explore</a></li>
-                    <li><a href="pages/services.html">Services</a></li>
-                    <li><a href="pages/contact.html">Contact</a></li>
+                    <li><a href="">Explore</a></li>
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -44,10 +44,10 @@
                     <li><a href="#projects">Projects</a></li>
                     <ul>
                         <li><a href="#timer-module">Timer Module</a></li>
-                        <li><a href="#rpi-lcd-menu">RPi LCD Menu</a></li>
-                        <li><a href="#discord-bg-removal">Auto BG Removal</a></li>
-                        <li><a href="#levenshtein-distance">Levenshtein</a></li>
+                        <li><a href="#rpi-lcd-menu">Embedded LCD Menu</a></li>
+                        <li><a href="#discord-bg-removal">Background Removal</a></li>
                         <li><a href="#custom-game-engine">Custom Game Engine</a></li>
+                        <li><a href="#levenshtein-distance">Levenshtein Algorithm</a></li>
                         <li><a href="#relay-bit-adder">Relay Bit Adder</a></li>
                     </ul>
                 </ul>
@@ -64,23 +64,26 @@
 
 
     <section class="about-me" id="about-me">
-        <div class="container">
+        <div class="section-container">
             <h2 class="section-header">About Me</h2>
-            <p class="section-paragraph">
-                Self-motivated and highly curious Software Engineer with a strong aptitude for problem-solving and a
-                passion
-                for continuous learning.
-                <br><br>
-                Proficient in various programming languages and software development methodologies. Demonstrated success
-                in
-                delivering innovative and effective solutions for a diverse range of projects.
-            </p>
+            <div class="about-me-content">
+                <p class="section-paragraph">
+                    Self-motivated and highly curious Software Engineer with a strong aptitude for problem-solving and a
+                    passion
+                    for continuous learning.
+                    <br><br>
+                    Proficient in various programming languages and software development methodologies. Demonstrated
+                    success
+                    in
+                    delivering innovative and effective solutions for a diverse range of projects.
+                </p>
+            </div>
         </div>
     </section>
 
 
     <section class="languages-tools" id="languages-tools">
-        <div class="container">
+        <div class="section-container">
             <h2 class="section-header">Languages</h2>
             <div class="language-grid">
 
@@ -150,89 +153,112 @@
 
 
     <section class="projects" id="projects">
-        <div class="container">
+        <div class="section-container">
             <h2 class="section-header">Projects</h2>
 
             <div class="project" id="timer-module">
                 <h4>Timer Module</h4>
                 <a href="https://github.com/syn-chromatic/timer-module" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    A Python project that combines a timer module and a custom profiler to analyze and optimize the
-                    performance of your code.
-                    <br><br>
-                    The timer module helps track the execution time of specific code blocks, while
-                    the custom profiler provides insights into the function calls and their performance.
-                </p>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        A Python project that provides a timer module and a custom profiler to analyze and optimize the
+                        performance of your code.
+                        <br><br>
+                        The timer module helps track the execution time of specific code blocks, while the custom
+                        profiler
+                        provides insights into the function calls and their performance.
+                        <br><br>
+                        This project can be used to identify bottlenecks and optimize performance.
+                    </p>
+                </div>
             </div>
 
             <div class="project" id="rpi-lcd-menu">
-                <h4>RPi LCD Menu</h4>
+                <h4>Embedded LCD Menu</h4>
                 <a href="https://github.com/syn-chromatic/rpi-lcd-menu" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    A Python project that enables the creation and navigation of interactive menus on a Character
-                    LCD module.
-                    <br><br>
-                    The project is highly versatile and can be employed in various scenarios like home automation
-                    systems.
-                </p>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        A versatile solution that enables the creation and navigation of interactive menus on an
+                        LCD module for embedded systems.
+                        <br><br>
+                        The project can be integrated into a wide range of applications, such as home automation
+                        systems,
+                        industrial control systems, and so on.
+                    </p>
+                </div>
             </div>
-
 
             <div class="project" id="discord-bg-removal">
-                <h4>Automatic Background Removal</h4>
+                <h4>Background Removal</h4>
                 <a href="https://github.com/syn-chromatic/discord-bg-removal-bot" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    A powerful tool that leverages machine learning to seamlessly remove backgrounds from images,
-                    and videos.
-                    <br><br>
-                    In the case of videos or animated images, it deconstructs the input into frames, processes
-                    each frame individually, and reconstructs it with the background removed, without requiring
-                    any input from the user to outline the background, which makes it a perfect fit for a Discord Bot.
-                </p>
-            </div>
-
-
-            <div class="project" id="levenshtein-distance">
-                <h4>Levenshtein Algorithm</h4>
-                <a href="https://github.com/syn-chromatic/levenshtein-distance" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    A Python project that implements the Levenshtein distance algorithm to measure
-                    the similarity between two strings.
-                    <br><br>
-                    The algorithm calculates the minimum number of single-character edits
-                    (insertions, deletions, or substitutions) required to transform one string into another.
-                    <br><br>
-                    This efficient and versatile algorithm has applications in fields
-                    such as natural language processing, data cleansing, spell checking, and search engines.
-                </p>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        A Discord Bot that leverages machine learning to easily remove backgrounds from images and
+                        videos,
+                        and has support for many file formats.
+                        <br><br>
+                        In the case of videos or animated images, it deconstructs the input into frames, processes
+                        each frame individually, and reconstructs it with the background removed, without requiring
+                        any input from the user to outline the background.
+                    </p>
+                </div>
             </div>
 
 
             <div class="project" id="custom-game-engine">
                 <h4>Custom Game Engine</h4>
                 <a href="https://github.com/syn-chromatic/rust-g-engine" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    A project built in Rust encompassing the development of a custom game engine.
-                    <br><br>
-                    The game engine simulates realistic movements and interactions between objects. Although unfinished,
-                    this project serves as an educational venture to deepen understanding of physics simulations and to
-                    put my software development skills to test.
-                </p>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        An ambitious venture into engine programming built in Rust, encompassing the development of my
+                        own
+                        game engine.
+                        <br><br>
+                        The engine is able to simulate realistic movements and interactions between objects, as
+                        well as many other complex features.
+                        <br><br>
+                        Although unfinished, this project serves as an educational journey to deepen my understanding of
+                        game development at its core and to put my software development skills to test.
+                    </p>
+                </div>
             </div>
+
+
+            <div class="project" id="levenshtein-distance">
+                <h4>Levenshtein Algorithm</h4>
+                <a href="https://github.com/syn-chromatic/levenshtein-distance" target="_blank">Repository</a>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        This highly useful algorithm measures the similarity between two strings.
+                        <br><br>
+                        It calculates the minimum number of single-character edits
+                        (insertions, deletions, or substitutions) required to transform one string into another.
+                        <br><br>
+                        This efficient and versatile algorithm has applications in fields
+                        such as natural language processing, data cleansing, spell checking, and search engines.
+                    </p>
+                </div>
+            </div>
+
 
             <div class="project" id="relay-bit-adder">
                 <h4>Relay Bit Adder</h4>
                 <a href="https://github.com/syn-chromatic/relay-bit-adder" target="_blank">Repository</a>
-                <p class="section-paragraph">
-                    This project is centered around hardware, as opposed to software, the Relay Bit Adder is a fascinating
-                    exploration into the fundamentals of computing.
-                    <br><br>
-                    This project makes use of relays to create a binary adder, a fundamental component of arithmetic
-                    logic units in computers.
-                    <br><br>
-                    The circuit uses switches and relays to perform binary addition, the relays function as logic gates,
-                    and with clever wiring, I was able to perform bit-wise addition, ultimately being able to add binary numbers.
-                </p>
+                <div class="project-content">
+                    <p class="section-paragraph">
+                        This project is centered around hardware, as opposed to software, the Relay Bit Adder is a
+                        fascinating exploration into the fundamentals of computing.
+                        <br><br>
+                        I developed my own circuit to create a binary adder, a fundamental component of arithmetic
+                        logic units in computers.
+                        <br><br>
+                        The circuit uses mechanical relays and switches to achieve this, the relays function as logic
+                        gates,
+                        and with clever wiring, I was able to perform bit-wise addition, ultimately being able to add
+                        binary
+                        numbers.
+                    </p>
+                </div>
             </div>
 
         </div>

@@ -35,7 +35,6 @@
 	cursor: pointer;
 	z-index: 2;
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
-	transition: all 0.3s ease-in;
 }
 
 .sidebar h4 {
@@ -112,7 +111,10 @@
 .table-of-contents li.visible>a {
 	color: #b5b5b5;
 	font-weight: bold;
-	border-left: 1px solid var(--GreyAccent2);
+	border-left: 1px solid color-mix(in SRGB, var(--GreyAccent2), transparent 10%);
+	border-top: 1px dashed color-mix(in SRGB, var(--GreyAccent2), transparent 50%);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	transform: translateY(6px);
 	padding-left: 0.5em;
 }
@@ -126,6 +128,7 @@
 	height: 100%;
 	z-index: -1;
 	pointer-events: none;
+	padding-bottom: 1.5em;
 }
 
 .toc-marker-container {
@@ -140,9 +143,7 @@
 	pointer-events: none;
 }
 
-
 .toc-marker path {
-	transition: all 0.4s ease;
 	stroke: var(--RedAccent1);
 	stroke-width: 2;
 	stroke-linecap: round;

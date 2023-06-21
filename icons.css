@@ -18,45 +18,45 @@
 }
 
 .devicon-python-plain:before {
-	background-image: url("/images/icons/python-icon.svg");
+	background-image: url("/media/icons/python-icon.svg");
 }
 
 .devicon-rust-plain:before {
-	background-image: url("/images/icons/rust-icon.png");
+	background-image: url("/media/icons/rust-icon.png");
 }
 
 .devicon-cpp-plain:before {
-	background-image: url("/images/icons/cplusplus-icon.svg");
+	background-image: url("/media/icons/cplusplus-icon.svg");
 }
 
 .devicon-c-plain:before {
-	background-image: url("/images/icons/c-icon.svg");
+	background-image: url("/media/icons/c-icon.svg");
 }
 
 .devicon-java-plain:before {
-	background-image: url("/images/icons/java-icon.svg");
+	background-image: url("/media/icons/java-icon.svg");
 }
 
 .devicon-sqlite-plain:before {
-	background-image: url("/images/icons/sqlite-icon.svg");
+	background-image: url("/media/icons/sqlite-icon.svg");
 }
 
 .devicon-vscode-plain:before {
-	background-image: url("/images/icons/vscode-icon.svg");
+	background-image: url("/media/icons/vscode-icon.svg");
 }
 
 .devicon-intellij-plain:before {
-	background-image: url("/images/icons/intellij-idea-icon.png");
+	background-image: url("/media/icons/intellij-idea-icon.png");
 }
 
 .devicon-vtune-plain:before {
-	background-image: url("/images/icons/vtune-icon.png");
+	background-image: url("/media/icons/vtune-icon.png");
 }
 
 .devicon-sqlalchemy-plain:before {
-	background-image: url("/images/icons/sqla-icon.png");
+	background-image: url("/media/icons/sqla-icon.png");
 }
 
 .devicon-docker-plain:before {
-	background-image: url("/images/icons/docker-icon.svg");
+	background-image: url("/media/icons/docker-icon.svg");
 }

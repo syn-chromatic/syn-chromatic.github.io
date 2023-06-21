@@ -13,21 +13,20 @@
 }
 
 .navigation-content {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .navigation-list {
-    display: flex;
+	display: flex;
 	list-style: none;
-    padding: 0;
+	padding: 0;
 	margin-top: -10px;
 	margin-bottom: -10px;
 }
 
 .navigation-list li {
 	box-sizing: border-box;
-	margin-right: 20px;
 	padding-left: 5px;
 	padding-right: 5px;
 	border-radius: 10px;
