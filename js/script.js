@@ -20,7 +20,8 @@ window.addEventListener ('resize', adjustSidebarContentHeight, false);
 
 sidebar.addEventListener ('touchstart', function (event) {
   event.preventDefault ();
-  sidebar.classList.toggle ('open');
+  sidebar.classList.toggle ('opened');
+  sidebar.classList.toggle ('closed');
 });
 
 document

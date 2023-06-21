@@ -59,24 +59,34 @@
 	left : -275px;
 }
 
-@media (hover : hover) {
+@media (hover: hover) {
 	.sidebar:hover {
 		left : 0;
 	}
+
+	.sidebar .sidebar-tab {
+		animation : spin-reverse 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+	}
+
+	.sidebar:hover .sidebar-tab {
+		animation : spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+	}
+
+
 }
 
 @media (hover: none) {
-	.sidebar.open {
+	.sidebar.opened {
 		left : 0;
 	}
-}
 
-.sidebar .sidebar-tab {
-	animation : spin-reverse 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
-}
+	.sidebar.closed .sidebar-tab {
+		animation : spin-reverse 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+	}
 
-.sidebar.open .sidebar-tab {
-	animation : spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+	.sidebar.opened .sidebar-tab {
+		animation : spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
+	}
 }
 
 @keyframes spin-reverse {
@@ -136,16 +146,15 @@
 }
 
 .toc-marker-container {
-	position       : absolute;
-	top            : -20px;
-	left           : 0;
-	width          : 100%;
-	height         : 100%;
-	overflow       : hidden;
-	margin-top     : 20px;
-	margin-bottom  : 20px;
-	z-index        : -1;
-	pointer-events : none;
+	position      : absolute;
+	top           : -20px;
+	left          : 0;
+	width         : 100%;
+	height        : 100%;
+	overflow      : hidden;
+	margin-top    : 20px;
+	margin-bottom : 20px;
+	z-index       : -1;
 }
 
 .toc-marker path {
@@ -155,5 +164,4 @@
 	stroke-linejoin : round;
 	transform       : translateY(12px);
 	z-index         : -1;
-	pointer-events  : none;
 }
