@@ -3,52 +3,52 @@ screen and (max-height: 800px) {
 
 	.language-grid,
 	.tool-grid {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns : repeat(2, 1fr);
 	}
 
 	.navigation-bar li {
-		font-size: 80%;
+		font-size : 80%;
 	}
 
 	.section-container {
-		font-size: 80%;
+		font-size : 80%;
 	}
 
 	.sidebar {
-		left: -280px;
+		left : -280px;
 	}
 
 	.sidebar-tab {
-		font-size: 0.9em;
-		right: -18px;
+		font-size : 0.9em;
+		right     : -18px;
 	}
 
 	.section-header {
-		font-size: 1em;
+		font-size : 1em;
 	}
 
 	.section-paragraph {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 
 	.projects h4 {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 
 	.projects a {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 
 	.languages-tools span {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 
 	.sidebar-header {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 
 	.sidebar a {
-		font-size: 0.8em;
+		font-size : 0.8em;
 	}
 }
 
@@ -56,11 +56,11 @@ screen and (max-height: 800px) {
 @media screen and (max-width: 400px),
 screen and (max-height: 400px) {
 	.navigation-bar li {
-		font-size: 70%;
+		font-size : 70%;
 	}
 
 	.navigation-bar a {
-		padding-left: 5px;
-		padding-right: 5px;
+		padding-left  : 5px;
+		padding-right : 5px;
 	}
 }

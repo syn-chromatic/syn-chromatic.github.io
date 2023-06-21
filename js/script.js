@@ -8,6 +8,7 @@ var TOP_MARGIN = 0.1;
 var BOTTOM_MARGIN = 0.2;
 var pathLength;
 var lastPathStart, lastPathEnd;
+var sidebar = document.querySelector ('.sidebar');
 
 document.addEventListener ('DOMContentLoaded', drawPath);
 document.addEventListener ('DOMContentLoaded', sync);
@@ -17,49 +18,10 @@ window.addEventListener ('scroll', sync, false);
 document.addEventListener ('DOMContentLoaded', adjustSidebarContentHeight);
 window.addEventListener ('resize', adjustSidebarContentHeight, false);
 
-document.addEventListener ('touchstart', touchHandler, true);
-document.addEventListener ('touchmove', touchHandler, true);
-document.addEventListener ('touchend', touchHandler, true);
-document.addEventListener ('touchcancel', touchHandler, true);
-
-function touchHandler (event) {
-  var touches = event.changedTouches, first = touches[0], type = '';
-  switch (event.type) {
-    case 'touchstart':
-      type = 'mousedown';
-      break;
-    case 'touchmove':
-      type = 'mousemove';
-      break;
-    case 'touchend':
-      type = 'mouseup';
-      break;
-    default:
-      return;
-  }
-
-  var simulatedEvent = document.createEvent ('MouseEvent');
-  simulatedEvent.initMouseEvent (
-    type,
-    true,
-    true,
-    window,
-    1,
-    first.screenX,
-    first.screenY,
-    first.clientX,
-    first.clientY,
-    false,
-    false,
-    false,
-    false,
-    0 /*left*/,
-    null
-  );
-
-  first.target.dispatchEvent (simulatedEvent);
+sidebar.addEventListener ('touchstart', function (event) {
   event.preventDefault ();
-}
+  sidebar.classList.toggle ('open');
+});
 
 document
   .querySelector ('.sidebar-content')
