@@ -11,24 +11,17 @@ screen and (max-height: 800px) {
 	}
 
 	.section-container {
+		width     : 90%;
+		padding   : 0 0;
 		font-size : 80%;
 	}
 
-	.sidebar {
-		left : -280px;
-	}
-
-	.sidebar-tab {
-		font-size : 0.9em;
-		right     : -18px;
+	.sidebar.closed {
+		left : -282px;
 	}
 
 	.section-header {
 		font-size : 1em;
-	}
-
-	.section-paragraph {
-		font-size : 0.8em;
 	}
 
 	.projects h4 {

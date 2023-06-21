@@ -1,10 +1,9 @@
 .sidebar {
 	position         : fixed;
-	left             : -278px;
-	top              : 54%;
+	top              : 50%;
 	transform        : translateY(-50%);
 	padding          : 1.5em;
-	height           : 90%;
+	height           : 100%;
 	width            : 300px;
 	background-color : #191919;
 	box-shadow       : 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -23,8 +22,10 @@
 
 .sidebar-tab {
 	position         : absolute;
+	width            : 50px;
+	height           : 20px;
 	top              : 50%;
-	right            : -20px;
+	right            : -15px;
 	text-shadow      : #121212 3px 4px 5px;
 	transform        : translate(24%, -50%) rotate(-90deg);
 	border-bottom    : 3px solid var(--GreyAccent1);
@@ -36,6 +37,18 @@
 	cursor           : pointer;
 	z-index          : 2;
 	box-shadow       : 2px 0px 10px rgba(0, 0, 0, 0.8), -2px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-tab::before {
+	content          : "";
+	position         : absolute;
+	top              : 50%;
+	left             : 50%;
+	transform        : translate(-50%, -50%);
+	width            : 10px;
+	height           : 10px;
+	border-radius    : 50%;
+	background-color : var(--RedAccent1);
 }
 
 .sidebar h4 {
@@ -56,11 +69,11 @@
 }
 
 .sidebar.closed {
-	left : -278px;
+	left : -282px;
 }
 
 @media (hover: hover) {
-	.sidebar:hover {
+	.sidebar.closed:hover {
 		left : 0;
 	}
 

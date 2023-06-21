@@ -9,6 +9,7 @@ var BOTTOM_MARGIN = 0.2;
 var pathLength;
 var lastPathStart, lastPathEnd;
 var sidebar = document.querySelector ('.sidebar');
+var listItems = document.querySelectorAll ('.table-of-contents li');
 
 document.addEventListener ('DOMContentLoaded', drawPath);
 document.addEventListener ('DOMContentLoaded', sync);
@@ -18,10 +19,22 @@ window.addEventListener ('scroll', sync, false);
 document.addEventListener ('DOMContentLoaded', adjustSidebarContentHeight);
 window.addEventListener ('resize', adjustSidebarContentHeight, false);
 
+listItems.forEach (function (item) {
+  item.addEventListener ('touchstart', function (event) {
+    event.preventDefault ();
+    var targetId = item.querySelector ('a').getAttribute ('href');
+    var targetElement = document.querySelector (targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView ({behavior: 'smooth'});
+    }
+  });
+});
+
 sidebar.addEventListener ('touchstart', function (event) {
   event.preventDefault ();
   sidebar.classList.toggle ('opened');
   sidebar.classList.toggle ('closed');
+  console.log (sidebar.classList);
 });
 
 document
