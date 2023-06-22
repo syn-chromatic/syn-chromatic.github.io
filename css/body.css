@@ -105,8 +105,7 @@
 	gap                   : 1em;
 }
 
-.language-item,
-.tool-item {
+.grid-item {
 	display          : flex;
 	align-items      : center;
 	margin-bottom    : 0.2em;
@@ -118,16 +117,25 @@
 	box-shadow       : 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.language-item:hover,
-.tool-item:hover {
-	background : #202020;
-	transform  : translateX(5px);
-	box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
-	transition : all 0.2s ease-in;
+@media (hover: hover) {
+	.grid-item.inactive:hover {
+		background : #202020;
+		transform  : translateX(5px);
+		box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
 }
 
-.language-item i,
-.tool-item i {
+@media (hover : none) {
+	.grid-item.active {
+		background : #202020;
+		transform  : translateX(5px);
+		box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
+}
+
+.grid-item i {
 	display      : inline-block;
 	margin-right : 1em;
 	width        : 30px;
@@ -207,11 +215,23 @@
 	text-shadow    : #121212 3px 3px 10px;
 }
 
-.project:hover {
-	background : #202020;
-	transform  : translateX(5px);
-	box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
-	transition : all 0.2s ease-in;
+
+@media (hover: hover) {
+	.project:hover {
+		background : #202020;
+		transform  : translateX(5px);
+		box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
+}
+
+@media (hover : none) {
+	.project.active {
+		background : #202020;
+		transform  : translateX(5px);
+		box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
 }
 
 .project a:hover {

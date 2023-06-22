@@ -1,195 +1,264 @@
-var toc = document.querySelector ('.table-of-contents');
-var tocPath = document.querySelector ('.toc-marker path');
-var tocItems;
+var TOC = document.querySelector(".table-of-contents");
+var TOC_PATH = document.querySelector(".toc-marker path");
+var TOC_LIST = TOC.querySelectorAll("li");
+var TOC_ITEMS = [].slice.call(TOC_LIST);
+var SIDEBAR = document.querySelector(".sidebar");
+var SIDEBAR_CONTENT = document.querySelector(".sidebar-content");
 
-// Factor of screen size that the element must cross
-// before it's considered visible
+var PATH_LENGTH = undefined;
+var PREV_PATH_START = undefined;
+var PREV_PATH_END = undefined;
+
+var PREV_PROJECT_ITEM = undefined;
+
 var TOP_MARGIN = 0.1;
 var BOTTOM_MARGIN = 0.2;
-var pathLength;
-var lastPathStart, lastPathEnd;
-var sidebar = document.querySelector ('.sidebar');
-var listItems = document.querySelectorAll ('.table-of-contents li');
 
-document.addEventListener ('DOMContentLoaded', drawPath);
-document.addEventListener ('DOMContentLoaded', sync);
-window.addEventListener ('resize', drawPathEvent, false);
-window.addEventListener ('scroll', sync, false);
+setListeners();
 
-document.addEventListener ('DOMContentLoaded', adjustSidebarContentHeight);
-window.addEventListener ('resize', adjustSidebarContentHeight, false);
+function setListeners() {
+	document.addEventListener("DOMContentLoaded", adjustSidebarContentHeight);
+	document.addEventListener("DOMContentLoaded", drawPath);
+	document.addEventListener("DOMContentLoaded", sync);
 
-listItems.forEach (function (item) {
-  item.addEventListener ('touchstart', function (event) {
-    event.preventDefault ();
-    var targetId = item.querySelector ('a').getAttribute ('href');
-    var targetElement = document.querySelector (targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView ({behavior: 'smooth'});
-    }
-  });
-});
+	window.addEventListener("resize", adjustSidebarContentHeight, false);
+	window.addEventListener("resize", drawPathEvent, false);
+	window.addEventListener("scroll", sync, false);
 
-sidebar.addEventListener ('touchstart', function (event) {
-  event.preventDefault ();
-  sidebar.classList.toggle ('opened');
-  sidebar.classList.toggle ('closed');
-  console.log (sidebar.classList);
-});
-
-document
-  .querySelector ('.sidebar-content')
-  .addEventListener ('scroll', function () {
-    var yDistance = -this.scrollTop + 12;
-    var tocMarker = document.querySelector ('.toc-marker path');
-    var tocMarkerTransition = tocMarker.style.transition;
-
-    tocMarker.style.transition = 'none';
-    tocMarker.style.transform = 'translateY(' + yDistance + 'px)';
-
-    var transitionEndEvents = [
-      'transitionend',
-      'webkitTransitionEnd',
-      'oTransitionEnd',
-      'otransitionend',
-      'MSTransitionEnd',
-    ];
-
-    var transitionRevert = function () {
-      tocMarker.style.transition = tocMarkerTransition;
-    };
-
-    for (var i = 0; i < transitionEndEvents.length; i++) {
-      tocMarker.addEventListener (transitionEndEvents[i], transitionRevert);
-    }
-  });
-
-function adjustSidebarContentHeight () {
-  var sidebar = document.querySelector ('.sidebar');
-  var sidebarContent = document.querySelector ('.sidebar-content');
-
-  if (sidebar && sidebarContent) {
-    // Get the height, padding, and border
-    var sidebarHeight = parseFloat (getComputedStyle (sidebar).height);
-    var paddingTop = parseFloat (getComputedStyle (sidebar).paddingTop);
-    var paddingBottom = parseFloat (getComputedStyle (sidebar).paddingBottom);
-    var borderTop = parseFloat (getComputedStyle (sidebar).borderTopWidth);
-    var borderBottom = parseFloat (
-      getComputedStyle (sidebar).borderBottomWidth
-    );
-
-    // Calculate the available height within the sidebar
-    var availableHeight =
-      sidebarHeight - paddingTop - paddingBottom - borderTop - borderBottom;
-
-    // Set the max-height of the sidebar-content
-    sidebarContent.style.maxHeight = availableHeight + 'px';
-  }
+	setSidebarTouchListener();
+	setSidebarTabTouchListener();
+	setSidebarScrollListener();
+	setGridItemTouchListener();
+	setProjectItemTouchListener();
 }
 
-function drawPathEvent () {
-  var sidebar = document.querySelector ('.sidebar');
-  var transitionEndEvents = [
-    'transitionend',
-    'webkitTransitionEnd',
-    'oTransitionEnd',
-    'otransitionend',
-    'MSTransitionEnd',
-  ];
-
-  for (var i = 0; i < transitionEndEvents.length; i++) {
-    sidebar.addEventListener (transitionEndEvents[i], drawPath);
-  }
+function setSidebarTouchListener() {
+	TOC_LIST.forEach(function (item) {
+		item.addEventListener("touchstart", function (event) {
+			event.preventDefault();
+			var targetId = item.querySelector("a").getAttribute("href");
+			var targetElement = document.querySelector(targetId);
+			toggleProjectItem(targetElement);
+			if (targetElement) {
+				targetElement.scrollIntoView({
+					behavior: "smooth",
+				});
+			}
+		});
+	});
 }
 
-function drawPath () {
-  tocItems = [].slice.call (toc.querySelectorAll ('li'));
-
-  // Cache element references and measurements
-  tocItems = tocItems.map (function (item) {
-    var anchor = item.querySelector ('a');
-    var target = document.getElementById (
-      anchor.getAttribute ('href').slice (1)
-    );
-
-    return {
-      listItem: item,
-      anchor: anchor,
-      target: target,
-    };
-  });
-
-  // Remove missing targets
-  tocItems = tocItems.filter (function (item) {
-    return !!item.target;
-  });
-
-  var path = [];
-  var pathIndent;
-
-  tocItems.forEach (function (item, i) {
-    var x = item.anchor.offsetLeft - 5,
-      y = item.anchor.offsetTop,
-      height = item.anchor.offsetHeight;
-
-    if (i === 0) {
-      path.push ('M', x, y, 'L', x, y + height);
-      item.pathStart = 0;
-    } else {
-      // Draw an additional line when there's a change in
-      // indent levels
-      if (pathIndent !== x) path.push ('L', pathIndent, y);
-
-      path.push ('L', x, y);
-
-      // Set the current path so that we can measure it
-      tocPath.setAttribute ('d', path.join (' '));
-      item.pathStart = tocPath.getTotalLength () || 0;
-
-      path.push ('L', x, y + height);
-    }
-    pathIndent = x;
-    tocPath.setAttribute ('d', path.join (' '));
-    item.pathEnd = tocPath.getTotalLength ();
-  });
-  pathLength = tocPath.getTotalLength ();
+function setSidebarTabTouchListener() {
+	SIDEBAR.addEventListener("touchstart", function (event) {
+		event.preventDefault();
+		SIDEBAR.classList.toggle("opened");
+		SIDEBAR.classList.toggle("closed");
+	});
 }
 
-function sync () {
-  var windowHeight = window.innerHeight;
-  var pathStart = pathLength, pathEnd = 0;
-  var visibleItems = 0;
+function setGridItemTouchListener() {
+	var gridItems = document.querySelectorAll(".grid-item");
+	var prevGridItem = null;
 
-  tocItems.forEach (function (item) {
-    var targetBounds = item.target.getBoundingClientRect ();
+	gridItems.forEach(function (gridItem) {
+		gridItem.addEventListener("touchstart", function (event) {
+			event.preventDefault();
 
-    if (
-      targetBounds.bottom > windowHeight * TOP_MARGIN &&
-      targetBounds.top < windowHeight * (1 - BOTTOM_MARGIN)
-    ) {
-      pathStart = Math.min (item.pathStart, pathStart);
-      pathEnd = Math.max (item.pathEnd, pathEnd);
+			if (prevGridItem !== null && prevGridItem != gridItem) {
+				prevGridItem.classList.remove("active");
+				prevGridItem.classList.add("inactive");
+			}
 
-      visibleItems += 1;
+			gridItem.classList.toggle("active");
+			gridItem.classList.toggle("inactive");
 
-      item.listItem.classList.add ('visible');
-    } else {
-      item.listItem.classList.remove ('visible');
-    }
-  });
+			prevGridItem = gridItem;
+		});
+	});
+}
 
-  // Specify the visible path or hide the path altogether
-  // if there are no visible items
-  if (visibleItems > 0 && pathStart < pathEnd) {
-    if (pathStart !== lastPathStart || pathEnd !== lastPathEnd) {
-      tocPath.setAttribute ('stroke-dashoffset', '1');
-      tocPath.setAttribute (
-        'stroke-dasharray',
-        '1, ' + pathStart + ', ' + (pathEnd - pathStart) + ', ' + pathLength
-      );
-      tocPath.setAttribute ('opacity', 1);
-    }
-  } else {
-    tocPath.setAttribute ('opacity', 0);
-  }
+function setProjectItemTouchListener() {
+	var projectItems = document.querySelectorAll(".project");
+	var prevProjectItem = null;
+
+	projectItems.forEach(function (projectItem) {
+		projectItem.addEventListener("touchstart", function (event) {
+			event.preventDefault();
+			toggleProjectItem(projectItem);
+		});
+	});
+}
+
+function setSidebarScrollListener() {
+	SIDEBAR_CONTENT.addEventListener("scroll", function () {
+		var yDistance = -this.scrollTop + 12;
+		var tocMarker = document.querySelector(".toc-marker path");
+		var tocMarkerTransition = tocMarker.style.transition;
+
+		tocMarker.style.transition = "none";
+		tocMarker.style.transform = "translateY(" + yDistance + "px)";
+
+		var transitionEndEvents = [
+			"transitionend",
+			"webkitTransitionEnd",
+			"oTransitionEnd",
+			"otransitionend",
+			"MSTransitionEnd",
+		];
+
+		var transitionRevert = function () {
+			tocMarker.style.transition = tocMarkerTransition;
+		};
+
+		for (var i = 0; i < transitionEndEvents.length; i++) {
+			tocMarker.addEventListener(
+				transitionEndEvents[i],
+				transitionRevert
+			);
+		}
+	});
+}
+
+function toggleProjectItem(projectItem) {
+	if (PREV_PROJECT_ITEM !== undefined && PREV_PROJECT_ITEM != projectItem) {
+		PREV_PROJECT_ITEM.classList.remove("active");
+		PREV_PROJECT_ITEM.classList.add("inactive");
+	}
+
+	projectItem.classList.toggle("active");
+	projectItem.classList.toggle("inactive");
+
+	PREV_PROJECT_ITEM = projectItem;
+}
+
+function adjustSidebarContentHeight() {
+	if (SIDEBAR && SIDEBAR_CONTENT) {
+		var sidebarHeight = parseFloat(getComputedStyle(SIDEBAR).height);
+		var paddingTop = parseFloat(getComputedStyle(SIDEBAR).paddingTop);
+		var paddingBottom = parseFloat(getComputedStyle(SIDEBAR).paddingBottom);
+		var borderTop = parseFloat(getComputedStyle(SIDEBAR).borderTopWidth);
+		var borderBottom = parseFloat(
+			getComputedStyle(SIDEBAR).borderBottomWidth
+		);
+
+		var padLength = paddingTop + paddingBottom;
+		var borderLength = borderTop + borderBottom;
+		var availableHeight = sidebarHeight - padLength - borderLength;
+
+		SIDEBAR_CONTENT.style.maxHeight = availableHeight + "px";
+	}
+}
+
+function drawPathEvent() {
+	var transitionEndEvents = [
+		"transitionend",
+		"webkitTransitionEnd",
+		"oTransitionEnd",
+		"otransitionend",
+		"MSTransitionEnd",
+	];
+
+	for (var i = 0; i < transitionEndEvents.length; i++) {
+		SIDEBAR.addEventListener(transitionEndEvents[i], drawPath);
+	}
+}
+
+function drawPath() {
+	TOC_ITEMS = [].slice.call(TOC_LIST);
+
+	// Cache element references and measurements
+	TOC_ITEMS = TOC_ITEMS.map(function (item) {
+		var anchor = item.querySelector("a");
+		var target = document.getElementById(
+			anchor.getAttribute("href").slice(1)
+		);
+
+		return {
+			listItem: item,
+			anchor: anchor,
+			target: target,
+		};
+	});
+
+	// Remove missing targets
+	TOC_ITEMS = TOC_ITEMS.filter(function (item) {
+		return !!item.target;
+	});
+
+	var path = [];
+	var pathIndent;
+
+	TOC_ITEMS.forEach(function (item, i) {
+		var x = item.anchor.offsetLeft - 5,
+			y = item.anchor.offsetTop,
+			height = item.anchor.offsetHeight;
+
+		if (i === 0) {
+			path.push("M", x, y, "L", x, y + height);
+			item.pathStart = 0;
+		} else {
+			// Draw an additional line when there's a change in
+			// indent levels
+			if (pathIndent !== x) path.push("L", pathIndent, y);
+
+			path.push("L", x, y);
+
+			// Set the current path so that we can measure it
+			TOC_PATH.setAttribute("d", path.join(" "));
+			item.pathStart = TOC_PATH.getTotalLength() || 0;
+
+			path.push("L", x, y + height);
+		}
+		pathIndent = x;
+		TOC_PATH.setAttribute("d", path.join(" "));
+		item.pathEnd = TOC_PATH.getTotalLength();
+	});
+	PATH_LENGTH = TOC_PATH.getTotalLength();
+}
+
+function getDashArrayValue(pathStart, pathEnd) {
+	var dashArrayVal = "1, ";
+	dashArrayVal += pathStart + ", ";
+	dashArrayVal += pathEnd - pathStart + ", ";
+	dashArrayVal += PATH_LENGTH;
+	return dashArrayVal;
+}
+
+function sync() {
+	var windowHeight = window.innerHeight;
+	var pathStart = PATH_LENGTH;
+	var pathEnd = 0;
+	var visibleItems = 0;
+
+	TOC_ITEMS.forEach(function (item) {
+		var targetBounds = item.target.getBoundingClientRect();
+
+		if (
+			targetBounds.bottom > windowHeight * TOP_MARGIN &&
+			targetBounds.top < windowHeight * (1 - BOTTOM_MARGIN)
+		) {
+			pathStart = Math.min(item.pathStart, pathStart);
+			pathEnd = Math.max(item.pathEnd, pathEnd);
+
+			visibleItems += 1;
+
+			item.listItem.classList.add("visible");
+		} else {
+			item.listItem.classList.remove("visible");
+		}
+	});
+
+	// Specify the visible path or hide the path altogether
+	// if there are no visible items
+	if (visibleItems > 0 && pathStart < pathEnd) {
+		if (pathStart !== PREV_PATH_START || pathEnd !== PREV_PATH_END) {
+			var dashArrayVal = getDashArrayValue(pathStart, pathEnd);
+
+			TOC_PATH.setAttribute("stroke-dashoffset", "1");
+			TOC_PATH.setAttribute("stroke-dasharray", dashArrayVal);
+			TOC_PATH.setAttribute("opacity", 1);
+		}
+	} else {
+		TOC_PATH.setAttribute("opacity", 0);
+	}
 }
