@@ -61,9 +61,7 @@ function setGridItemTouchListener() {
 	var prevGridItem = null;
 
 	gridItems.forEach(function (gridItem) {
-		gridItem.addEventListener("touchstart", function (event) {
-			event.preventDefault();
-
+		gridItem.addEventListener("touchstart", function (_) {
 			if (prevGridItem !== null && prevGridItem != gridItem) {
 				prevGridItem.classList.remove("active");
 				prevGridItem.classList.add("inactive");
@@ -79,11 +77,9 @@ function setGridItemTouchListener() {
 
 function setProjectItemTouchListener() {
 	var projectItems = document.querySelectorAll(".project");
-	var prevProjectItem = null;
 
 	projectItems.forEach(function (projectItem) {
-		projectItem.addEventListener("touchstart", function (event) {
-			event.preventDefault();
+		projectItem.addEventListener("touchstart", function (_) {
 			toggleProjectItem(projectItem);
 		});
 	});
