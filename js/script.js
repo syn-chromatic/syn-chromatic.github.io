@@ -18,6 +18,144 @@ var BOTTOM_MARGIN = 0.2;
 
 setListeners();
 
+// class Sidebar {
+// 	constructor() {
+// 		this.topMargin = 0.1;
+// 		this.bottomMargin = 0.2;
+// 		this.toc = document.querySelector(".table-of-contents");
+// 		this.tocList = this.toc.querySelectorAll("li");
+// 		this.tocItems = [].slice.call(this.tocList);
+// 		this.markerPath = document.querySelector(".toc-marker path");
+// 		this.pathLength = undefined;
+// 		this.prevPathStart = undefined;
+// 		this.prevPathEnd = undefined;
+// 		this.sidebar = document.querySelector(".sidebar");
+// 		this.sidebarContent = document.querySelector(".sidebar-content");
+// 	}
+
+// 	updateSidebarHeight() {
+// 		if (SIDEBAR && SIDEBAR_CONTENT) {
+// 			var sidebarHeight = parseFloat(getComputedStyle(this.sidebar).height);
+// 			var paddingTop = parseFloat(getComputedStyle(this.sidebar).paddingTop);
+// 			var paddingBottom = parseFloat(
+// 				getComputedStyle(this.sidebar).paddingBottom
+// 			);
+// 			var borderTop = parseFloat(
+// 				getComputedStyle(this.sidebar).borderTopWidth
+// 			);
+// 			var borderBottom = parseFloat(
+// 				getComputedStyle(this.sidebar).borderBottomWidth
+// 			);
+
+// 			var padLength = paddingTop + paddingBottom;
+// 			var borderLength = borderTop + borderBottom;
+// 			var availableHeight = sidebarHeight - padLength - borderLength;
+
+// 			this.sidebarContent.style.maxHeight = availableHeight + "px";
+// 		}
+// 	}
+
+// 	syncMarker() {
+// 		var windowHeight = window.innerHeight;
+// 		var pathStart = this.pathLength;
+// 		var pathEnd = 0;
+// 		var visibleItems = 0;
+
+// 		TOC_ITEMS.forEach(function (item) {
+// 			var targetBounds = item.target.getBoundingClientRect();
+
+// 			if (
+// 				targetBounds.bottom > windowHeight * this.topMargin &&
+// 				targetBounds.top < windowHeight * (1 - this.bottomMargin)
+// 			) {
+// 				pathStart = Math.min(item.pathStart, pathStart);
+// 				pathEnd = Math.max(item.pathEnd, pathEnd);
+
+// 				visibleItems += 1;
+
+// 				item.listItem.classList.add("visible");
+// 			} else {
+// 				item.listItem.classList.remove("visible");
+// 			}
+// 		});
+
+// 		// Specify the visible path or hide the path altogether
+// 		// if there are no visible items
+// 		if (visibleItems > 0 && pathStart < pathEnd) {
+// 			if (pathStart !== this.prevPathStart || pathEnd !== this.prevPathEnd) {
+// 				var dashArrayVal = this.getDashArrayValue(pathStart, pathEnd);
+
+// 				this.markerPath.setAttribute("stroke-dashoffset", "1");
+// 				this.markerPath.setAttribute("stroke-dasharray", dashArrayVal);
+// 				TOC_PATH.setAttribute("opacity", 1);
+// 			}
+// 		} else {
+// 			this.markerPath.setAttribute("opacity", 0);
+// 		}
+// 	}
+
+// 	drawMarker() {
+// 		this.tocItems = [].slice.call(this.tocList);
+
+// 		// Cache element references and measurements
+// 		this.tocItems = this.tocItems.map(function (item) {
+// 			var anchor = item.querySelector("a");
+// 			var target = document.getElementById(
+// 				anchor.getAttribute("href").slice(1)
+// 			);
+
+// 			return {
+// 				listItem: item,
+// 				anchor: anchor,
+// 				target: target,
+// 			};
+// 		});
+
+// 		// Remove missing targets
+// 		this.tocItems = this.tocItems.filter(function (item) {
+// 			return !!item.target;
+// 		});
+
+// 		var path = [];
+// 		var pathIndent;
+
+// 		this.tocItems.forEach(function (item, i) {
+// 			var x = item.anchor.offsetLeft - 5,
+// 				y = item.anchor.offsetTop,
+// 				height = item.anchor.offsetHeight;
+
+// 			if (i === 0) {
+// 				path.push("M", x, y, "L", x, y + height);
+// 				item.pathStart = 0;
+// 			} else {
+// 				// Draw an additional line when there's a change in
+// 				// indent levels
+// 				if (pathIndent !== x) path.push("L", pathIndent, y);
+
+// 				path.push("L", x, y);
+
+// 				// Set the current path so that we can measure it
+// 				this.markerPath.setAttribute("d", path.join(" "));
+// 				item.pathStart = this.markerPath.getTotalLength() || 0;
+
+// 				path.push("L", x, y + height);
+// 			}
+// 			pathIndent = x;
+// 			this.markerPath.setAttribute("d", path.join(" "));
+// 			item.pathEnd = this.markerPath.getTotalLength();
+// 		});
+// 		this.pathLength = this.markerPath.getTotalLength();
+// 	}
+
+// 	getDashArrayValue(pathStart, pathEnd) {
+// 		var dashArrayVal = "1, ";
+// 		dashArrayVal += pathStart + ", ";
+// 		dashArrayVal += pathEnd - pathStart + ", ";
+// 		dashArrayVal += PATH_LENGTH;
+// 		return dashArrayVal;
+// 	}
+// }
+
 function setListeners() {
 	document.addEventListener("DOMContentLoaded", adjustSidebarContentHeight);
 	document.addEventListener("DOMContentLoaded", drawPath);
@@ -117,10 +255,7 @@ function setSidebarScrollListener() {
 		};
 
 		for (var i = 0; i < transitionEndEvents.length; i++) {
-			tocMarker.addEventListener(
-				transitionEndEvents[i],
-				transitionRevert
-			);
+			tocMarker.addEventListener(transitionEndEvents[i], transitionRevert);
 		}
 	});
 }
@@ -196,9 +331,7 @@ function adjustSidebarContentHeight() {
 		var paddingTop = parseFloat(getComputedStyle(SIDEBAR).paddingTop);
 		var paddingBottom = parseFloat(getComputedStyle(SIDEBAR).paddingBottom);
 		var borderTop = parseFloat(getComputedStyle(SIDEBAR).borderTopWidth);
-		var borderBottom = parseFloat(
-			getComputedStyle(SIDEBAR).borderBottomWidth
-		);
+		var borderBottom = parseFloat(getComputedStyle(SIDEBAR).borderBottomWidth);
 
 		var padLength = paddingTop + paddingBottom;
 		var borderLength = borderTop + borderBottom;
@@ -228,9 +361,7 @@ function drawPath() {
 	// Cache element references and measurements
 	TOC_ITEMS = TOC_ITEMS.map(function (item) {
 		var anchor = item.querySelector("a");
-		var target = document.getElementById(
-			anchor.getAttribute("href").slice(1)
-		);
+		var target = document.getElementById(anchor.getAttribute("href").slice(1));
 
 		return {
 			listItem: item,
