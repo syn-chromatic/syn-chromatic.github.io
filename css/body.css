@@ -65,12 +65,27 @@
 	transition     : all 0.8s ease-out;
 }
 
-.about-me:hover,
-.languages-tools:hover,
-.projects:hover {
-	background : #2f2f2f;
-	box-shadow : 10px 10px 10px rgba(0, 0, 0, 0.5);
-	transition : all 0.2s ease-in;
+@media (hover: hover) {
+
+	.about-me:hover,
+	.languages-tools:hover,
+	.projects:hover {
+		background : #2f2f2f;
+		box-shadow : 10px 10px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
+
+}
+
+@media (hover : none) {
+
+	.about-me.active,
+	.languages-tools.active,
+	.projects.active {
+		background : #2f2f2f;
+		box-shadow : 10px 10px 10px rgba(0, 0, 0, 0.5);
+		transition : all 0.2s ease-in;
+	}
 }
 
 

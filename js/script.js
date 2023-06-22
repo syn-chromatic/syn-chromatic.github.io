@@ -10,6 +10,8 @@ var PREV_PATH_START = undefined;
 var PREV_PATH_END = undefined;
 
 var PREV_PROJECT_ITEM = undefined;
+var PREV_GRID_ITEM = undefined;
+var PREV_SECTION_ITEM = undefined;
 
 var TOP_MARGIN = 0.1;
 var BOTTOM_MARGIN = 0.2;
@@ -30,6 +32,7 @@ function setListeners() {
 	setSidebarScrollListener();
 	setGridItemTouchListener();
 	setProjectItemTouchListener();
+	setSectionItemTouchListener();
 }
 
 function setSidebarTouchListener() {
@@ -38,7 +41,7 @@ function setSidebarTouchListener() {
 			event.preventDefault();
 			var targetId = item.querySelector("a").getAttribute("href");
 			var targetElement = document.querySelector(targetId);
-			toggleProjectItem(targetElement);
+			handleSidebarSelection(targetElement);
 			if (targetElement) {
 				targetElement.scrollIntoView({
 					behavior: "smooth",
@@ -58,19 +61,25 @@ function setSidebarTabTouchListener() {
 
 function setGridItemTouchListener() {
 	var gridItems = document.querySelectorAll(".grid-item");
-	var prevGridItem = null;
 
 	gridItems.forEach(function (gridItem) {
 		gridItem.addEventListener("touchstart", function (_) {
-			if (prevGridItem !== null && prevGridItem != gridItem) {
-				prevGridItem.classList.remove("active");
-				prevGridItem.classList.add("inactive");
-			}
+			toggleSectionItemFromElement(gridItem);
+			toggleGridItem(gridItem);
+		});
+	});
+}
 
-			gridItem.classList.toggle("active");
-			gridItem.classList.toggle("inactive");
+function setSectionItemTouchListener() {
+	var projects = document.querySelector(".projects");
+	var aboutMe = document.querySelector(".about-me");
+	var languagesTools = document.querySelector(".languages-tools");
 
-			prevGridItem = gridItem;
+	var sectionItems = [projects, aboutMe, languagesTools];
+
+	sectionItems.forEach(function (sectionItem) {
+		sectionItem.addEventListener("touchstart", function (_) {
+			toggleSectionItemFromElement(sectionItem);
 		});
 	});
 }
@@ -80,6 +89,7 @@ function setProjectItemTouchListener() {
 
 	projectItems.forEach(function (projectItem) {
 		projectItem.addEventListener("touchstart", function (_) {
+			toggleSectionItemFromElement(projectItem);
 			toggleProjectItem(projectItem);
 		});
 	});
@@ -115,6 +125,28 @@ function setSidebarScrollListener() {
 	});
 }
 
+function handleSidebarSelection(element) {
+	var elementName = element.className;
+	if (elementName.startsWith("project") && !elementName.startsWith("projects")) {
+		toggleProjectItem(element);
+		toggleSectionItemFromElement(element);
+	} else {
+		if (PREV_PROJECT_ITEM != undefined) {
+			toggleProjectItem(PREV_PROJECT_ITEM);
+		}
+
+		if (
+			PREV_GRID_ITEM != undefined &&
+			!PREV_GRID_ITEM.className.includes("inactive")
+		) {
+			console.log(PREV_GRID_ITEM);
+			toggleGridItem(PREV_GRID_ITEM);
+		}
+
+		toggleSectionItemFromElement(element);
+	}
+}
+
 function toggleProjectItem(projectItem) {
 	if (PREV_PROJECT_ITEM !== undefined && PREV_PROJECT_ITEM != projectItem) {
 		PREV_PROJECT_ITEM.classList.remove("active");
@@ -125,6 +157,37 @@ function toggleProjectItem(projectItem) {
 	projectItem.classList.toggle("inactive");
 
 	PREV_PROJECT_ITEM = projectItem;
+}
+
+function toggleGridItem(gridItem) {
+	if (PREV_GRID_ITEM !== undefined && PREV_GRID_ITEM != gridItem) {
+		PREV_GRID_ITEM.classList.remove("active");
+		PREV_GRID_ITEM.classList.add("inactive");
+	}
+
+	gridItem.classList.toggle("active");
+	gridItem.classList.toggle("inactive");
+
+	PREV_GRID_ITEM = gridItem;
+}
+
+function toggleSectionItemFromElement(element) {
+	var closestSection = element.closest("section");
+	if (closestSection != PREV_SECTION_ITEM) {
+		toggleSectionItem(closestSection);
+	}
+}
+
+function toggleSectionItem(sectionItem) {
+	if (PREV_SECTION_ITEM !== undefined && PREV_SECTION_ITEM != sectionItem) {
+		PREV_SECTION_ITEM.classList.remove("active");
+		PREV_SECTION_ITEM.classList.add("inactive");
+	}
+
+	sectionItem.classList.toggle("active");
+	sectionItem.classList.toggle("inactive");
+
+	PREV_SECTION_ITEM = sectionItem;
 }
 
 function adjustSidebarContentHeight() {
