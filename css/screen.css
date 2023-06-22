@@ -45,6 +45,19 @@ screen and (max-height: 800px) {
 	}
 }
 
+@media screen and (max-width: 500px),
+screen and (max-height: 500px) {
+	.sidebar.closed {
+		left : -286px;
+	}
+
+	.about-me,
+	.languages-tools,
+	.projects,
+	.top-bar {
+		width : 85%;
+	}
+}
 
 @media screen and (max-width: 400px),
 screen and (max-height: 400px) {
