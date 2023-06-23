@@ -80,12 +80,12 @@
 	margin-bottom    : 10px;
 }
 
-.sidebar.closed {
+.sidebar.inactive {
 	left : -282px;
 }
 
 @media (hover: hover) {
-	.sidebar.closed:hover {
+	.sidebar.inactive:hover {
 		left : 0;
 	}
 
@@ -99,15 +99,15 @@
 }
 
 @media (hover: none) {
-	.sidebar.opened {
+	.sidebar.active {
 		left : 0;
 	}
 
-	.sidebar.closed .sidebar-tab {
+	.sidebar.inactive .sidebar-tab {
 		animation : spin-reverse 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
 	}
 
-	.sidebar.opened .sidebar-tab {
+	.sidebar.active .sidebar-tab {
 		animation : spin 0.5s cubic-bezier(0.5, 1, 0.8, 1) 1;
 	}
 }

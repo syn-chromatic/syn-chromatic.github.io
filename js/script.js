@@ -1,247 +1,20 @@
-var TOC = document.querySelector(".table-of-contents");
-var TOC_PATH = document.querySelector(".toc-marker path");
-var TOC_LIST = TOC.querySelectorAll("li");
-var TOC_ITEMS = [].slice.call(TOC_LIST);
-var SIDEBAR = document.querySelector(".sidebar");
-var SIDEBAR_CONTENT = document.querySelector(".sidebar-content");
+class OnTransitionEndEvent {
+	constructor(element, functionCall, intervalDuration = 50, timeoutDuration = 200) {
+		this.element = element;
+		this.functionCall = functionCall;
+		this.intervalDuration = intervalDuration;
+		this.timeoutDuration = timeoutDuration;
+		this.startEventUnixMs = undefined;
+		this.timeoutId = undefined;
+		this.transitionEndEvents = this.getTransitionEndEvents();
+		this.addListener();
+	}
 
-var PATH_LENGTH = undefined;
-var PREV_PATH_START = undefined;
-var PREV_PATH_END = undefined;
+	addListener() {
+		window.addEventListener("resize", () => this.addTransitionListener());
+	}
 
-var PREV_PROJECT_ITEM = undefined;
-var PREV_GRID_ITEM = undefined;
-var PREV_SECTION_ITEM = undefined;
-
-var TOP_MARGIN = 0.1;
-var BOTTOM_MARGIN = 0.2;
-
-setListeners();
-
-// class Sidebar {
-// 	constructor() {
-// 		this.topMargin = 0.1;
-// 		this.bottomMargin = 0.2;
-// 		this.toc = document.querySelector(".table-of-contents");
-// 		this.tocList = this.toc.querySelectorAll("li");
-// 		this.tocItems = [].slice.call(this.tocList);
-// 		this.markerPath = document.querySelector(".toc-marker path");
-// 		this.pathLength = undefined;
-// 		this.prevPathStart = undefined;
-// 		this.prevPathEnd = undefined;
-// 		this.sidebar = document.querySelector(".sidebar");
-// 		this.sidebarContent = document.querySelector(".sidebar-content");
-// 	}
-
-// 	updateSidebarHeight() {
-// 		if (SIDEBAR && SIDEBAR_CONTENT) {
-// 			var sidebarHeight = parseFloat(getComputedStyle(this.sidebar).height);
-// 			var paddingTop = parseFloat(getComputedStyle(this.sidebar).paddingTop);
-// 			var paddingBottom = parseFloat(
-// 				getComputedStyle(this.sidebar).paddingBottom
-// 			);
-// 			var borderTop = parseFloat(
-// 				getComputedStyle(this.sidebar).borderTopWidth
-// 			);
-// 			var borderBottom = parseFloat(
-// 				getComputedStyle(this.sidebar).borderBottomWidth
-// 			);
-
-// 			var padLength = paddingTop + paddingBottom;
-// 			var borderLength = borderTop + borderBottom;
-// 			var availableHeight = sidebarHeight - padLength - borderLength;
-
-// 			this.sidebarContent.style.maxHeight = availableHeight + "px";
-// 		}
-// 	}
-
-// 	syncMarker() {
-// 		var windowHeight = window.innerHeight;
-// 		var pathStart = this.pathLength;
-// 		var pathEnd = 0;
-// 		var visibleItems = 0;
-
-// 		TOC_ITEMS.forEach(function (item) {
-// 			var targetBounds = item.target.getBoundingClientRect();
-
-// 			if (
-// 				targetBounds.bottom > windowHeight * this.topMargin &&
-// 				targetBounds.top < windowHeight * (1 - this.bottomMargin)
-// 			) {
-// 				pathStart = Math.min(item.pathStart, pathStart);
-// 				pathEnd = Math.max(item.pathEnd, pathEnd);
-
-// 				visibleItems += 1;
-
-// 				item.listItem.classList.add("visible");
-// 			} else {
-// 				item.listItem.classList.remove("visible");
-// 			}
-// 		});
-
-// 		// Specify the visible path or hide the path altogether
-// 		// if there are no visible items
-// 		if (visibleItems > 0 && pathStart < pathEnd) {
-// 			if (pathStart !== this.prevPathStart || pathEnd !== this.prevPathEnd) {
-// 				var dashArrayVal = this.getDashArrayValue(pathStart, pathEnd);
-
-// 				this.markerPath.setAttribute("stroke-dashoffset", "1");
-// 				this.markerPath.setAttribute("stroke-dasharray", dashArrayVal);
-// 				TOC_PATH.setAttribute("opacity", 1);
-// 			}
-// 		} else {
-// 			this.markerPath.setAttribute("opacity", 0);
-// 		}
-// 	}
-
-// 	drawMarker() {
-// 		this.tocItems = [].slice.call(this.tocList);
-
-// 		// Cache element references and measurements
-// 		this.tocItems = this.tocItems.map(function (item) {
-// 			var anchor = item.querySelector("a");
-// 			var target = document.getElementById(
-// 				anchor.getAttribute("href").slice(1)
-// 			);
-
-// 			return {
-// 				listItem: item,
-// 				anchor: anchor,
-// 				target: target,
-// 			};
-// 		});
-
-// 		// Remove missing targets
-// 		this.tocItems = this.tocItems.filter(function (item) {
-// 			return !!item.target;
-// 		});
-
-// 		var path = [];
-// 		var pathIndent;
-
-// 		this.tocItems.forEach(function (item, i) {
-// 			var x = item.anchor.offsetLeft - 5,
-// 				y = item.anchor.offsetTop,
-// 				height = item.anchor.offsetHeight;
-
-// 			if (i === 0) {
-// 				path.push("M", x, y, "L", x, y + height);
-// 				item.pathStart = 0;
-// 			} else {
-// 				// Draw an additional line when there's a change in
-// 				// indent levels
-// 				if (pathIndent !== x) path.push("L", pathIndent, y);
-
-// 				path.push("L", x, y);
-
-// 				// Set the current path so that we can measure it
-// 				this.markerPath.setAttribute("d", path.join(" "));
-// 				item.pathStart = this.markerPath.getTotalLength() || 0;
-
-// 				path.push("L", x, y + height);
-// 			}
-// 			pathIndent = x;
-// 			this.markerPath.setAttribute("d", path.join(" "));
-// 			item.pathEnd = this.markerPath.getTotalLength();
-// 		});
-// 		this.pathLength = this.markerPath.getTotalLength();
-// 	}
-
-// 	getDashArrayValue(pathStart, pathEnd) {
-// 		var dashArrayVal = "1, ";
-// 		dashArrayVal += pathStart + ", ";
-// 		dashArrayVal += pathEnd - pathStart + ", ";
-// 		dashArrayVal += PATH_LENGTH;
-// 		return dashArrayVal;
-// 	}
-// }
-
-function setListeners() {
-	document.addEventListener("DOMContentLoaded", adjustSidebarContentHeight);
-	document.addEventListener("DOMContentLoaded", drawPath);
-	document.addEventListener("DOMContentLoaded", sync);
-
-	window.addEventListener("resize", adjustSidebarContentHeight, false);
-	window.addEventListener("resize", drawPathEvent, false);
-	window.addEventListener("scroll", sync, false);
-
-	setSidebarTouchListener();
-	setSidebarTabTouchListener();
-	setSidebarScrollListener();
-	setGridItemTouchListener();
-	setProjectItemTouchListener();
-	setSectionItemTouchListener();
-}
-
-function setSidebarTouchListener() {
-	TOC_LIST.forEach(function (item) {
-		item.addEventListener("touchstart", function (event) {
-			event.preventDefault();
-			var targetId = item.querySelector("a").getAttribute("href");
-			var targetElement = document.querySelector(targetId);
-			handleSidebarSelection(targetElement);
-			if (targetElement) {
-				targetElement.scrollIntoView({
-					behavior: "smooth",
-				});
-			}
-		});
-	});
-}
-
-function setSidebarTabTouchListener() {
-	SIDEBAR.addEventListener("touchstart", function (event) {
-		event.preventDefault();
-		SIDEBAR.classList.toggle("opened");
-		SIDEBAR.classList.toggle("closed");
-	});
-}
-
-function setGridItemTouchListener() {
-	var gridItems = document.querySelectorAll(".grid-item");
-
-	gridItems.forEach(function (gridItem) {
-		gridItem.addEventListener("touchstart", function (_) {
-			toggleSectionItemFromElement(gridItem);
-			toggleGridItem(gridItem);
-		});
-	});
-}
-
-function setSectionItemTouchListener() {
-	var projects = document.querySelector(".projects");
-	var aboutMe = document.querySelector(".about-me");
-	var languagesTools = document.querySelector(".languages-tools");
-
-	var sectionItems = [projects, aboutMe, languagesTools];
-
-	sectionItems.forEach(function (sectionItem) {
-		sectionItem.addEventListener("touchstart", function (_) {
-			toggleSectionItemFromElement(sectionItem);
-		});
-	});
-}
-
-function setProjectItemTouchListener() {
-	var projectItems = document.querySelectorAll(".project");
-
-	projectItems.forEach(function (projectItem) {
-		projectItem.addEventListener("touchstart", function (_) {
-			toggleSectionItemFromElement(projectItem);
-			toggleProjectItem(projectItem);
-		});
-	});
-}
-
-function setSidebarScrollListener() {
-	SIDEBAR_CONTENT.addEventListener("scroll", function () {
-		var yDistance = -this.scrollTop + 12;
-		var tocMarker = document.querySelector(".toc-marker path");
-		var tocMarkerTransition = tocMarker.style.transition;
-
-		tocMarker.style.transition = "none";
-		tocMarker.style.transform = "translateY(" + yDistance + "px)";
-
+	getTransitionEndEvents() {
 		var transitionEndEvents = [
 			"transitionend",
 			"webkitTransitionEnd",
@@ -249,206 +22,419 @@ function setSidebarScrollListener() {
 			"otransitionend",
 			"MSTransitionEnd",
 		];
+		return transitionEndEvents;
+	}
 
-		var transitionRevert = function () {
-			tocMarker.style.transition = tocMarkerTransition;
-		};
+	getUnixTimeMs() {
+		var currentTime = new Date();
+		var currentUnixMs = currentTime.getTime();
+		return currentUnixMs;
+	}
 
-		for (var i = 0; i < transitionEndEvents.length; i++) {
-			tocMarker.addEventListener(transitionEndEvents[i], transitionRevert);
+	setTimeout() {
+		var timeoutId = setTimeout(() => {
+			this.transitionEndEvents.forEach((transitionEndEvent) => {
+				this.element.removeEventListener(transitionEndEvent, () =>
+					this.transitionEndHandler(timeoutId)
+				);
+			});
+
+			this.resetState();
+			this.functionCall();
+		}, this.timeoutDuration);
+		return timeoutId;
+	}
+
+	resetState() {
+		clearTimeout(this.timeoutId);
+		this.startEventUnixMs = undefined;
+		this.timeoutId = undefined;
+	}
+
+	transitionEndHandler() {
+		if (this.timeoutId == undefined) {
+			this.timeoutId = this.setTimeout();
 		}
-	});
-}
 
-function handleSidebarSelection(element) {
-	var elementName = element.className;
-	if (elementName.startsWith("project") && !elementName.startsWith("projects")) {
-		toggleProjectItem(element);
-		toggleSectionItemFromElement(element);
-	} else {
-		if (PREV_PROJECT_ITEM != undefined) {
-			toggleProjectItem(PREV_PROJECT_ITEM);
+		if (this.timeoutId) {
+			if (this.startEventUnixMs == undefined) {
+				this.startEventUnixMs = this.getUnixTimeMs();
+			}
+			var currentUnixMs = this.getUnixTimeMs();
+			var elapsedMs = currentUnixMs - this.startEventUnixMs;
+
+			if (elapsedMs >= this.intervalDuration) {
+				this.functionCall();
+				this.resetState();
+			}
 		}
+	}
 
-		if (
-			PREV_GRID_ITEM != undefined &&
-			!PREV_GRID_ITEM.className.includes("inactive")
-		) {
-			console.log(PREV_GRID_ITEM);
-			toggleGridItem(PREV_GRID_ITEM);
+	addTransitionListener() {
+		this.transitionEndEvents.forEach((transitionEndEvent) => {
+			this.element.addEventListener(transitionEndEvent, () => {
+				this.transitionEndHandler();
+			});
+		});
+	}
+}
+
+class Sidebar {
+	constructor() {
+		this.topMargin = 0.1;
+		this.bottomMargin = 0.2;
+		this.curPathStart = undefined;
+		this.curPathEnd = undefined;
+		this.pathLength = undefined;
+
+		this.tocItems = this.getTocItems();
+		this.markerElem = document.querySelector(".toc-marker path");
+		this.sidebarElem = document.querySelector(".sidebar");
+		this.sidebarContentElem = document.querySelector(".sidebar-content");
+
+		this.addListeners();
+	}
+
+	addListeners() {
+		document.addEventListener("DOMContentLoaded", () => this.updateHeight());
+		document.addEventListener("DOMContentLoaded", () => this.drawMarker());
+		document.addEventListener("DOMContentLoaded", () => this.updateMarker());
+
+		window.addEventListener("resize", () => this.updateHeight());
+		window.addEventListener("scroll", () => this.updateMarker());
+
+		new OnTransitionEndEvent(this.sidebarElem, this.redrawMarker.bind(this));
+	}
+
+	getTocItems() {
+		var tocItems = document.querySelectorAll(".table-of-contents li");
+		tocItems = [].slice.call(tocItems);
+
+		tocItems = tocItems.map(function (item) {
+			var anchor = item.querySelector("a");
+			var target = document.getElementById(
+				anchor.getAttribute("href").slice(1)
+			);
+
+			return {
+				listItem: item,
+				anchor: anchor,
+				target: target,
+			};
+		});
+
+		tocItems = tocItems.filter(function (item) {
+			return !!item.target;
+		});
+		return tocItems;
+	}
+
+	getUnixTimeMs() {
+		var currentTime = new Date();
+		var currentUnixMs = currentTime.getTime();
+		return currentUnixMs;
+	}
+
+	updateHeight() {
+		if (this.sidebarElem && this.sidebarContentElem) {
+			var sidebarStyle = getComputedStyle(this.sidebarElem);
+
+			var sidebarHeight = parseFloat(sidebarStyle.height);
+			var paddingTop = parseFloat(sidebarStyle.paddingTop);
+			var paddingBottom = parseFloat(sidebarStyle.paddingBottom);
+			var borderTop = parseFloat(sidebarStyle.borderTopWidth);
+			var borderBottom = parseFloat(sidebarStyle.borderBottomWidth);
+
+			var padLength = paddingTop + paddingBottom;
+			var borderLength = borderTop + borderBottom;
+			var availableHeight = sidebarHeight - padLength - borderLength;
+
+			this.sidebarContentElem.style.maxHeight = availableHeight + "px";
 		}
-
-		toggleSectionItemFromElement(element);
-	}
-}
-
-function toggleProjectItem(projectItem) {
-	if (PREV_PROJECT_ITEM !== undefined && PREV_PROJECT_ITEM != projectItem) {
-		PREV_PROJECT_ITEM.classList.remove("active");
-		PREV_PROJECT_ITEM.classList.add("inactive");
 	}
 
-	projectItem.classList.toggle("active");
-	projectItem.classList.toggle("inactive");
-
-	PREV_PROJECT_ITEM = projectItem;
-}
-
-function toggleGridItem(gridItem) {
-	if (PREV_GRID_ITEM !== undefined && PREV_GRID_ITEM != gridItem) {
-		PREV_GRID_ITEM.classList.remove("active");
-		PREV_GRID_ITEM.classList.add("inactive");
+	redrawMarker() {
+		this.drawMarker();
+		this.updateMarker();
 	}
 
-	gridItem.classList.toggle("active");
-	gridItem.classList.toggle("inactive");
+	drawMarker() {
+		var path = [];
+		var pathIndent;
 
-	PREV_GRID_ITEM = gridItem;
-}
+		this.tocItems.forEach((item, i) => {
+			var x = item.anchor.offsetLeft - 5,
+				y = item.anchor.offsetTop,
+				height = item.anchor.offsetHeight;
 
-function toggleSectionItemFromElement(element) {
-	var closestSection = element.closest("section");
-	if (closestSection != PREV_SECTION_ITEM) {
-		toggleSectionItem(closestSection);
+			if (i === 0) {
+				path.push("M", x, y, "L", x, y + height);
+				item.pathStart = 0;
+			} else {
+				if (pathIndent !== x) path.push("L", pathIndent, y);
+				path.push("L", x, y);
+				this.markerElem.setAttribute("d", path.join(" "));
+				item.pathStart = this.markerElem.getTotalLength() || 0;
+
+				path.push("L", x, y + height);
+			}
+			pathIndent = x;
+			this.markerElem.setAttribute("d", path.join(" "));
+			item.pathEnd = this.markerElem.getTotalLength();
+		});
+		this.pathLength = this.markerElem.getTotalLength();
 	}
-}
 
-function toggleSectionItem(sectionItem) {
-	if (PREV_SECTION_ITEM !== undefined && PREV_SECTION_ITEM != sectionItem) {
-		PREV_SECTION_ITEM.classList.remove("active");
-		PREV_SECTION_ITEM.classList.add("inactive");
+	getMarkerPath() {
+		var windowHeight = window.innerHeight;
+		var pathStart = this.pathLength;
+		var pathEnd = 0;
+		var visibleItems = 0;
+
+		this.tocItems.forEach((item) => {
+			var targetBounds = item.target.getBoundingClientRect();
+
+			if (
+				targetBounds.bottom > windowHeight * this.topMargin &&
+				targetBounds.top < windowHeight * (1 - this.bottomMargin)
+			) {
+				pathStart = Math.min(item.pathStart, pathStart);
+				pathEnd = Math.max(item.pathEnd, pathEnd);
+
+				visibleItems += 1;
+
+				item.listItem.classList.add("visible");
+			} else {
+				item.listItem.classList.remove("visible");
+			}
+		});
+
+		return [pathStart, pathEnd, visibleItems];
 	}
 
-	sectionItem.classList.toggle("active");
-	sectionItem.classList.toggle("inactive");
+	updateMarker() {
+		var [pathStart, pathEnd, visibleItems] = this.getMarkerPath();
 
-	PREV_SECTION_ITEM = sectionItem;
-}
+		if (visibleItems > 0 && pathStart < pathEnd) {
+			if (pathStart !== this.curPathStart || pathEnd !== this.curPathEnd) {
+				var dashArrayVal = this.getDashArrayValue(pathStart, pathEnd);
 
-function adjustSidebarContentHeight() {
-	if (SIDEBAR && SIDEBAR_CONTENT) {
-		var sidebarHeight = parseFloat(getComputedStyle(SIDEBAR).height);
-		var paddingTop = parseFloat(getComputedStyle(SIDEBAR).paddingTop);
-		var paddingBottom = parseFloat(getComputedStyle(SIDEBAR).paddingBottom);
-		var borderTop = parseFloat(getComputedStyle(SIDEBAR).borderTopWidth);
-		var borderBottom = parseFloat(getComputedStyle(SIDEBAR).borderBottomWidth);
-
-		var padLength = paddingTop + paddingBottom;
-		var borderLength = borderTop + borderBottom;
-		var availableHeight = sidebarHeight - padLength - borderLength;
-
-		SIDEBAR_CONTENT.style.maxHeight = availableHeight + "px";
-	}
-}
-
-function drawPathEvent() {
-	var transitionEndEvents = [
-		"transitionend",
-		"webkitTransitionEnd",
-		"oTransitionEnd",
-		"otransitionend",
-		"MSTransitionEnd",
-	];
-
-	for (var i = 0; i < transitionEndEvents.length; i++) {
-		SIDEBAR.addEventListener(transitionEndEvents[i], drawPath);
-	}
-}
-
-function drawPath() {
-	TOC_ITEMS = [].slice.call(TOC_LIST);
-
-	// Cache element references and measurements
-	TOC_ITEMS = TOC_ITEMS.map(function (item) {
-		var anchor = item.querySelector("a");
-		var target = document.getElementById(anchor.getAttribute("href").slice(1));
-
-		return {
-			listItem: item,
-			anchor: anchor,
-			target: target,
-		};
-	});
-
-	// Remove missing targets
-	TOC_ITEMS = TOC_ITEMS.filter(function (item) {
-		return !!item.target;
-	});
-
-	var path = [];
-	var pathIndent;
-
-	TOC_ITEMS.forEach(function (item, i) {
-		var x = item.anchor.offsetLeft - 5,
-			y = item.anchor.offsetTop,
-			height = item.anchor.offsetHeight;
-
-		if (i === 0) {
-			path.push("M", x, y, "L", x, y + height);
-			item.pathStart = 0;
+				this.markerElem.setAttribute("stroke-dashoffset", "1");
+				this.markerElem.setAttribute("stroke-dasharray", dashArrayVal);
+				this.markerElem.setAttribute("opacity", 1);
+			}
 		} else {
-			// Draw an additional line when there's a change in
-			// indent levels
-			if (pathIndent !== x) path.push("L", pathIndent, y);
-
-			path.push("L", x, y);
-
-			// Set the current path so that we can measure it
-			TOC_PATH.setAttribute("d", path.join(" "));
-			item.pathStart = TOC_PATH.getTotalLength() || 0;
-
-			path.push("L", x, y + height);
+			this.markerElem.setAttribute("opacity", 0);
 		}
-		pathIndent = x;
-		TOC_PATH.setAttribute("d", path.join(" "));
-		item.pathEnd = TOC_PATH.getTotalLength();
-	});
-	PATH_LENGTH = TOC_PATH.getTotalLength();
-}
+	}
 
-function getDashArrayValue(pathStart, pathEnd) {
-	var dashArrayVal = "1, ";
-	dashArrayVal += pathStart + ", ";
-	dashArrayVal += pathEnd - pathStart + ", ";
-	dashArrayVal += PATH_LENGTH;
-	return dashArrayVal;
-}
-
-function sync() {
-	var windowHeight = window.innerHeight;
-	var pathStart = PATH_LENGTH;
-	var pathEnd = 0;
-	var visibleItems = 0;
-
-	TOC_ITEMS.forEach(function (item) {
-		var targetBounds = item.target.getBoundingClientRect();
-
-		if (
-			targetBounds.bottom > windowHeight * TOP_MARGIN &&
-			targetBounds.top < windowHeight * (1 - BOTTOM_MARGIN)
-		) {
-			pathStart = Math.min(item.pathStart, pathStart);
-			pathEnd = Math.max(item.pathEnd, pathEnd);
-
-			visibleItems += 1;
-
-			item.listItem.classList.add("visible");
-		} else {
-			item.listItem.classList.remove("visible");
-		}
-	});
-
-	// Specify the visible path or hide the path altogether
-	// if there are no visible items
-	if (visibleItems > 0 && pathStart < pathEnd) {
-		if (pathStart !== PREV_PATH_START || pathEnd !== PREV_PATH_END) {
-			var dashArrayVal = getDashArrayValue(pathStart, pathEnd);
-
-			TOC_PATH.setAttribute("stroke-dashoffset", "1");
-			TOC_PATH.setAttribute("stroke-dasharray", dashArrayVal);
-			TOC_PATH.setAttribute("opacity", 1);
-		}
-	} else {
-		TOC_PATH.setAttribute("opacity", 0);
+	getDashArrayValue(pathStart, pathEnd) {
+		var dashArrayVal = "1, ";
+		dashArrayVal += pathStart + ", ";
+		dashArrayVal += pathEnd - pathStart + ", ";
+		dashArrayVal += this.pathLength;
+		return dashArrayVal;
 	}
 }
+
+class TouchBehavior {
+	constructor() {
+		this.selProjectElem = undefined;
+		this.selGridElem = undefined;
+		this.selSectionElem = undefined;
+		this.addListeners();
+	}
+
+	addListeners() {
+		this.addSidebarTouchListener();
+		this.addSidebarItemTouchListener();
+		this.addSectionTouchListener();
+		this.addGridTouchListener();
+		this.addProjectTouchListener();
+	}
+
+	activateElement(element) {
+		element.classList.add("active");
+		element.classList.remove("inactive");
+	}
+
+	deactivateElement(element) {
+		element.classList.add("inactive");
+		element.classList.remove("active");
+	}
+
+	deactivateGridElement() {
+		if (this.selGridElem != undefined) {
+			this.deactivateElement(this.selGridElem);
+			this.selGridElem = undefined;
+		}
+	}
+
+	deactivateProjectElement() {
+		if (this.selProjectElem != undefined) {
+			this.deactivateElement(this.selProjectElem);
+			this.selProjectElem = undefined;
+		}
+	}
+
+	getElementName(element) {
+		var className = element.className;
+		var elementName = className.split(" ")[0];
+		return elementName;
+	}
+
+	handleSectionElement(section, element) {
+		if (section == element) {
+			if (this.selSectionElem != undefined) {
+				if (section != this.selSectionElem) {
+					this.deactivateGridElement();
+					this.deactivateProjectElement();
+				}
+			}
+		}
+		this.updateSectionState(section, element);
+	}
+
+	handleProjectElement(element) {
+		this.updateProjectState(element);
+		this.deactivateGridElement();
+	}
+
+	handleGridElement(element) {
+		this.updateGridState(element);
+		this.deactivateProjectElement();
+	}
+
+	updateStates(element) {
+		var section = element.closest("section");
+		var elementName = this.getElementName(element);
+
+		if (elementName == "project") {
+			this.handleProjectElement(element);
+		} else if (elementName == "grid-item") {
+			this.handleGridElement(element);
+		}
+
+		if (section) {
+			this.handleSectionElement(section, element);
+		}
+	}
+
+	updateSectionState(section, element) {
+		if (this.selSectionElem != undefined) {
+			this.deactivateElement(this.selSectionElem);
+			if (section == this.selSectionElem && element != section) {
+				this.selSectionElem = undefined;
+				return;
+			}
+		}
+
+		this.activateElement(section);
+		this.selSectionElem = section;
+	}
+
+	updateProjectState(element) {
+		if (this.selProjectElem != undefined) {
+			this.deactivateElement(this.selProjectElem);
+			if (element == this.selProjectElem) {
+				this.selProjectElem = undefined;
+				return;
+			}
+		}
+		this.activateElement(element);
+		this.selProjectElem = element;
+	}
+
+	updateGridState(element) {
+		if (this.selGridElem != undefined) {
+			this.deactivateElement(this.selGridElem);
+			if (element == this.selGridElem) {
+				this.selGridElem = undefined;
+				return;
+			}
+		}
+		this.activateElement(element);
+		this.selGridElem = element;
+	}
+
+	updateGridElem(gridElem) {
+		if (this.selGridElem !== undefined && this.selGridElem != gridElem) {
+			this.selGridElem.classList.remove("active");
+			this.selGridElem.classList.add("inactive");
+		}
+
+		gridElem.classList.toggle("active");
+		gridElem.classList.toggle("inactive");
+
+		this.selGridElem = gridElem;
+	}
+
+	addSidebarTouchListener() {
+		var sidebarElem = document.querySelector(".sidebar");
+		sidebarElem.addEventListener("touchstart", (event) => {
+			event.preventDefault();
+			sidebarElem.classList.toggle("active");
+			sidebarElem.classList.toggle("inactive");
+		});
+	}
+
+	addSidebarItemTouchListener() {
+		var tocElem = document.querySelector(".table-of-contents");
+		var tocList = tocElem.querySelectorAll("li");
+
+		tocList.forEach((item) => {
+			item.addEventListener("touchstart", (event) => {
+				event.preventDefault();
+				var targetId = item.querySelector("a").getAttribute("href");
+				var targetElement = document.querySelector(targetId);
+				this.updateStates(targetElement);
+				if (targetElement) {
+					targetElement.scrollIntoView({
+						behavior: "smooth",
+					});
+				}
+			});
+		});
+	}
+
+	addGridTouchListener() {
+		var gridItems = document.querySelectorAll(".grid-item");
+
+		gridItems.forEach((gridElem) => {
+			gridElem.addEventListener("touchstart", () => {
+				this.updateStates(gridElem);
+			});
+		});
+	}
+
+	addSectionTouchListener() {
+		var aboutMe = document.querySelector(".about-me");
+		var languagesTools = document.querySelector(".languages-tools");
+		var projects = document.querySelector(".projects");
+
+		var sectionItems = [projects, aboutMe, languagesTools];
+
+		sectionItems.forEach((sectionElem) => {
+			sectionElem.addEventListener("touchstart", () => {
+				this.updateStates(sectionElem);
+			});
+		});
+	}
+
+	addProjectTouchListener() {
+		var projectItems = document.querySelectorAll(".project");
+
+		projectItems.forEach((projectElem) => {
+			projectElem.addEventListener("touchstart", () => {
+				this.updateStates(projectElem);
+			});
+		});
+	}
+}
+
+function main() {
+	new Sidebar();
+	new TouchBehavior();
+}
+
+main();

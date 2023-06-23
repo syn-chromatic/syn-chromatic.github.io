@@ -16,7 +16,7 @@ screen and (max-height: 800px) {
 		font-size : 80%;
 	}
 
-	.sidebar.closed {
+	.sidebar.inactive {
 		left : -282px;
 	}
 
@@ -47,7 +47,7 @@ screen and (max-height: 800px) {
 
 @media screen and (max-width: 500px),
 screen and (max-height: 500px) {
-	.sidebar.closed {
+	.sidebar.inactive {
 		left : -286px;
 	}
 
