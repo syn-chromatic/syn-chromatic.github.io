@@ -292,6 +292,7 @@ class TouchBehavior {
 				}
 			}
 		}
+
 		this.updateSectionState(section, element);
 	}
 
@@ -323,10 +324,6 @@ class TouchBehavior {
 	updateSectionState(section, element) {
 		if (this.selSectionElem != undefined) {
 			this.deactivateElement(this.selSectionElem);
-			if (section == this.selSectionElem && element != section) {
-				this.selSectionElem = undefined;
-				return;
-			}
 		}
 
 		this.activateElement(section);
