@@ -429,7 +429,37 @@ class TouchBehavior {
 	}
 }
 
+class TopBar {
+	constructor() {
+		this.topBarElements = document.querySelectorAll(".top-bar li a");
+		this.topBarElemSet = false;
+		this.setTopBarPage();
+	}
+
+	activateTopBarElem(topBarElem) {
+		topBarElem.classList.add("active");
+		topBarElem.classList.remove("inactive");
+	}
+
+	deactivateTopBarElem(topBarElem) {
+		topBarElem.classList.add("inactive");
+		topBarElem.classList.remove("active");
+	}
+
+	setTopBarPage() {
+		this.topBarElements.forEach((topBarElem) => {
+			if (topBarElem.href == location.href && !this.topBarElemSet) {
+				this.activateTopBarElem(topBarElem);
+				this.topBarElemSet = true;
+				return;
+			}
+			this.deactivateTopBarElem(topBarElem);
+		});
+	}
+}
+
 function main() {
+	new TopBar();
 	new Sidebar();
 	new TouchBehavior();
 }
