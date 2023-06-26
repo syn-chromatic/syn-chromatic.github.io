@@ -316,9 +316,9 @@ footer {
 	align-items             : center;
 	background-color        : #222;
 	color                   : var(--ProjectTextColor);
-	border-top              : 2px solid var(--GreyAccent1);
-	border-right            : 2px solid var(--GreyAccent1);
-	border-left             : 2px solid var(--GreyAccent1);
+	border-top              : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
+	border-right            : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
+	border-left             : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
 	border-top-left-radius  : 20px;
 	border-top-right-radius : 20px;
 	padding                 : 20px;
@@ -326,9 +326,9 @@ footer {
 	padding-bottom          : 10px;
 	width                   : 80%;
 	max-width               : 960px;
+	font-size               : 0.95em;
 	bottom                  : 0;
 	left                    : 0;
-
 }
 
 footer a {
