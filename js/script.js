@@ -1,80 +1,31 @@
-class OnTransitionEndEvent {
-	constructor(element, functionCall, intervalDuration = 50, timeoutDuration = 200) {
-		this.element = element;
-		this.functionCall = functionCall;
-		this.intervalDuration = intervalDuration;
-		this.timeoutDuration = timeoutDuration;
-		this.startEventUnixMs = undefined;
-		this.timeoutId = undefined;
-		this.transitionEndEvents = this.getTransitionEndEvents();
-		this.addListener();
+class TopBar {
+	constructor() {
+		this.topBarElements = document.querySelectorAll(".top-bar li a");
+		this.topBarElemSet = false;
+		this.setTopBarPage();
 	}
 
-	addListener() {
-		window.addEventListener("resize", () => this.addTransitionListener());
+	activateTopBarElem(topBarElem) {
+		topBarElem.classList.add("active");
+		topBarElem.classList.remove("inactive");
 	}
 
-	getTransitionEndEvents() {
-		var transitionEndEvents = [
-			"transitionend",
-			"webkitTransitionEnd",
-			"oTransitionEnd",
-			"otransitionend",
-			"MSTransitionEnd",
-		];
-		return transitionEndEvents;
+	deactivateTopBarElem(topBarElem) {
+		topBarElem.classList.add("inactive");
+		topBarElem.classList.remove("active");
 	}
 
-	getUnixTimeMs() {
-		var currentTime = new Date();
-		var currentUnixMs = currentTime.getTime();
-		return currentUnixMs;
-	}
+	setTopBarPage() {
+		var pageId = document.querySelector("html").id;
 
-	setTimeout() {
-		var timeoutId = setTimeout(() => {
-			this.transitionEndEvents.forEach((transitionEndEvent) => {
-				this.element.removeEventListener(transitionEndEvent, () =>
-					this.transitionEndHandler(timeoutId)
-				);
-			});
-
-			this.resetState();
-			this.functionCall();
-		}, this.timeoutDuration);
-		return timeoutId;
-	}
-
-	resetState() {
-		clearTimeout(this.timeoutId);
-		this.startEventUnixMs = undefined;
-		this.timeoutId = undefined;
-	}
-
-	transitionEndHandler() {
-		if (this.timeoutId == undefined) {
-			this.timeoutId = this.setTimeout();
-		}
-
-		if (this.timeoutId) {
-			if (this.startEventUnixMs == undefined) {
-				this.startEventUnixMs = this.getUnixTimeMs();
+		this.topBarElements.forEach((topBarElem) => {
+			var topBarPageId = topBarElem.id;
+			if (pageId == topBarPageId && !this.topBarElemSet) {
+				this.activateTopBarElem(topBarElem);
+				this.topBarElemSet = true;
+				return;
 			}
-			var currentUnixMs = this.getUnixTimeMs();
-			var elapsedMs = currentUnixMs - this.startEventUnixMs;
-
-			if (elapsedMs >= this.intervalDuration) {
-				this.functionCall();
-				this.resetState();
-			}
-		}
-	}
-
-	addTransitionListener() {
-		this.transitionEndEvents.forEach((transitionEndEvent) => {
-			this.element.addEventListener(transitionEndEvent, () => {
-				this.transitionEndHandler();
-			});
+			this.deactivateTopBarElem(topBarElem);
 		});
 	}
 }
@@ -234,6 +185,87 @@ class Sidebar {
 		dashArrayVal += pathEnd - pathStart + ", ";
 		dashArrayVal += this.pathLength;
 		return dashArrayVal;
+	}
+}
+
+class OnTransitionEndEvent {
+	constructor(element, functionCall, intervalDuration = 50, timeoutDuration = 200) {
+		this.element = element;
+		this.functionCall = functionCall;
+		this.intervalDuration = intervalDuration;
+		this.timeoutDuration = timeoutDuration;
+		this.startEventUnixMs = undefined;
+		this.timeoutId = undefined;
+		this.transitionEndEvents = this.getTransitionEndEvents();
+		this.addListener();
+	}
+
+	addListener() {
+		window.addEventListener("resize", () => this.addTransitionListener());
+	}
+
+	getTransitionEndEvents() {
+		var transitionEndEvents = [
+			"transitionend",
+			"webkitTransitionEnd",
+			"oTransitionEnd",
+			"otransitionend",
+			"MSTransitionEnd",
+		];
+		return transitionEndEvents;
+	}
+
+	getUnixTimeMs() {
+		var currentTime = new Date();
+		var currentUnixMs = currentTime.getTime();
+		return currentUnixMs;
+	}
+
+	setTimeout() {
+		var timeoutId = setTimeout(() => {
+			this.transitionEndEvents.forEach((transitionEndEvent) => {
+				this.element.removeEventListener(transitionEndEvent, () =>
+					this.transitionEndHandler(timeoutId)
+				);
+			});
+
+			this.resetState();
+			this.functionCall();
+		}, this.timeoutDuration);
+		return timeoutId;
+	}
+
+	resetState() {
+		clearTimeout(this.timeoutId);
+		this.startEventUnixMs = undefined;
+		this.timeoutId = undefined;
+	}
+
+	transitionEndHandler() {
+		if (this.timeoutId == undefined) {
+			this.timeoutId = this.setTimeout();
+		}
+
+		if (this.timeoutId) {
+			if (this.startEventUnixMs == undefined) {
+				this.startEventUnixMs = this.getUnixTimeMs();
+			}
+			var currentUnixMs = this.getUnixTimeMs();
+			var elapsedMs = currentUnixMs - this.startEventUnixMs;
+
+			if (elapsedMs >= this.intervalDuration) {
+				this.functionCall();
+				this.resetState();
+			}
+		}
+	}
+
+	addTransitionListener() {
+		this.transitionEndEvents.forEach((transitionEndEvent) => {
+			this.element.addEventListener(transitionEndEvent, () => {
+				this.transitionEndHandler();
+			});
+		});
 	}
 }
 
@@ -425,35 +457,6 @@ class TouchBehavior {
 			projectElem.addEventListener("touchstart", () => {
 				this.updateStates(projectElem);
 			});
-		});
-	}
-}
-
-class TopBar {
-	constructor() {
-		this.topBarElements = document.querySelectorAll(".top-bar li a");
-		this.topBarElemSet = false;
-		this.setTopBarPage();
-	}
-
-	activateTopBarElem(topBarElem) {
-		topBarElem.classList.add("active");
-		topBarElem.classList.remove("inactive");
-	}
-
-	deactivateTopBarElem(topBarElem) {
-		topBarElem.classList.add("inactive");
-		topBarElem.classList.remove("active");
-	}
-
-	setTopBarPage() {
-		this.topBarElements.forEach((topBarElem) => {
-			if (topBarElem.href == location.href && !this.topBarElemSet) {
-				this.activateTopBarElem(topBarElem);
-				this.topBarElemSet = true;
-				return;
-			}
-			this.deactivateTopBarElem(topBarElem);
 		});
 	}
 }
