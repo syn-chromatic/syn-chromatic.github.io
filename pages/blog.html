@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" id="blog">
+
+<head>
+    <meta charset="UTF-8">
+    <base href="./blog.html">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Portfolio</title>
+    <link href="data:," rel="icon">
+    <link href="../icons.css?v=66" rel="stylesheet">
+    <link href="../css/variables.css?v=66" rel="stylesheet">
+    <link href="../css/main.css?v=66" rel="stylesheet">
+    <link href="../css/body.css?v=66" rel="stylesheet">
+    <link href="../css/sidebar.css?v=66" rel="stylesheet">
+    <link href="../css/topbar.css?v=66" rel="stylesheet">
+    <link href="../css/transitions.css?v=66" rel="stylesheet">
+    <link href="../css/screen.css?v=66" rel="stylesheet">
+</head>
+
+<body>
+
+    <aside class="top-bar">
+        <nav class="navigation-bar">
+            <div class="navigation-content">
+                <ul class="navigation-list">
+                    <li><a class="inactive" href="../" id="home">Home</a></li>
+                    <li><a class="inactive" href="blog.html" id="blog">Blog</a></li>
+                    <li><a class="inactive" href="../" id="services">Services</a></li>
+                    <li><a class="inactive" href="../" id="contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+
+
+    <aside class="sidebar inactive" id="sidebar">
+        <div class="sidebar-tab"></div>
+
+        <div class="sidebar-content">
+            <h4 class="sidebar-header">Table Of Contents</h4>
+            <nav class="table-of-contents">
+                <ul>
+                    <li><a href="#projects">Projects</a></li>
+                    <ul>
+                        <li><a href="#custom-game-engine">Custom Game Engine</a></li>
+                        <ul>
+                            <li><a href="#camera-projection">Camera Projection</a></li>
+                            <li><a href="#physics">Physics</a></li>
+                        </ul>
+                    </ul>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="toc-marker-container">
+            <svg class="toc-marker" height="200" width="200" xmlns="http://www.w3.org/2000/svg">
+                <path d="None" fill="transparent" stroke="#444" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="3" transform="translate(-0.5, -0.5)" />
+            </svg>
+        </div>
+    </aside>
+
+
+
+
+
+
+
+    <section class="projects inactive" id="projects">
+        <div class="section-container">
+            <h2 class="section-header">Projects</h2>
+
+            <div class="project inactive" id="custom-game-engine">
+                <h4>Custom Game Engine</h4>
+                <a href="https://github.com/syn-chromatic/rust-g-engine" target="_blank">Repository</a>
+                <div class="project-content">
+                    <div class="section-subheading" id="camera-projection">Camera Projection</div>
+                    <p class="section-paragraph">
+                        Grasping the concept of camera projection proved challenging at first. Imagine
+                        you have a virtual world within a cube, where for each axis of this world is
+                        the maximum floating-point value that a computer can represent, now imagine you
+                        want to set up a view point and look through this world.
+                    </p>
+
+
+                    <table class="table-container">
+                        <tr>
+                            <th>matrix representation of a world</th>
+                        </tr>
+                        <tr>
+                            <td><img alt="world" src="../media/images/world.png" /></td>
+                        </tr>
+                    </table>
+
+                    <p class="section-paragraph">
+                        One might assume it'd be as simple as viewing the world through one side of the cube and
+                        displaying everything on screen, but this is an inaccurate representation of 3D perception for
+                        key reasons:
+                        <br><br>
+                        Imagine we flatten the Z-Axis, which is fundamentally the same idea as viewing this world from
+                        one of its sides.
+                    </p>
+
+                    <table class="table-container">
+                        <tr>
+                            <th>flattened world</th>
+                        </tr>
+                        <tr>
+                            <td><img alt="flattened world" src="../media/images/flattened_world.png" /></td>
+                        </tr>
+                    </table>
+
+                    <p class="section-paragraph">
+                        This suddenly creates a problem, if you imagine those two particles moving away from the view
+                        point in a parallel path, then it would appear as the particles are keeping the same distance
+                        from each other on the screen, as it is linearly defined in this world, but that's not how 3D
+                        perception works, the particles should appear closer together as they move away.
+                        <br><br>
+                        This is where camera projection comes in, by creating a virtual frustum, we can define two
+                        planes, a near plane and a far plane, and project the objects that are present inside, which
+                        enables depth perception.
+                    </p>
+
+                    <table class="table-container">
+                        <tr>
+                            <th>camera frustum</th>
+                        </tr>
+                        <tr>
+                            <td><img alt="camera frustum" src="../media/images/frustum.gif" /></td>
+                        </tr>
+                    </table>
+
+                    <div class="section-line"></div>
+
+                    <div class="section-subheading" id="physics">Physics</div>
+                    <p class="section-paragraph">
+                        Physics presents a significant challenge in game development due to processing limitations and
+                        the need to balance realistic physics with interactivity. This often necessitates making
+                        trade-offs in performance and accuracy.
+                        <br><br>
+                    </p>
+
+
+                    <h2 class="section-subheading">Main Types of Collision Detection:</h2>
+                    <h2 class="section-subheading">1. Discrete Collision Detection</h2>
+
+                    <p class="section-paragraph">
+                        The most direct approach involves updating an object's position at each timestep of the physics
+                        simulation and checking for a collision, However, if an object is moving too quickly, there is a
+                        possibility it could phase through walls without detection.
+                    </p>
+
+
+                    <table class="table-container">
+                        <tr>
+                            <th>discrete collision</th>
+                        </tr>
+                        <tr>
+                            <td><img alt="discrete collision" src="../media/images/discrete_collision.png" /></td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <h2 class="section-subheading">2. Continuous Collision Detection</h2>
+                    <p class="section-paragraph">
+                        This method calculates potential collisions ahead of time based on an object's trajectory, by
+                        interpolating the positions of the object between time steps, this is computationally expensive,
+                        but provides higher accuracy than the discrete method.
+                    </p>
+
+                    <table class="table-container">
+                        <tr>
+                            <th>continuous collision</th>
+                        </tr>
+                        <tr>
+                            <td><img alt="continuous collision" src="../media/images/continous_collision.png" /></td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../js/script.js?v=66"></script>
+
+</body>
+
+</html>
