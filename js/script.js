@@ -420,6 +420,7 @@ class TouchBehavior {
 				if (targetElement) {
 					targetElement.scrollIntoView({
 						behavior: "smooth",
+						block: "center",
 					});
 				}
 			});

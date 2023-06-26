@@ -290,8 +290,6 @@ h3.section-subheading {
 @media (hover : none) {
 	.project.active {
 		background : #202020;
-		transform  : translateX(5px);
-		box-shadow : 5px 5px 10px rgba(0, 0, 0, 0.5);
 		transition : all 0.2s ease-in;
 	}
 }
