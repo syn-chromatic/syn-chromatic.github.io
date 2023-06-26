@@ -78,8 +78,8 @@ h3.section-subheading {
 	display         : flex;
 	justify-content : center;
 	height          : 3px;
-	margin-top      : 1em;
-	margin-bottom   : 2em;
+	margin-top      : 1.5em;
+	margin-bottom   : 1.5em;
 	background      : linear-gradient(to right,
 			var(--RedAccent1) 0%,
 			var(--GreyAccent1) 10%,
@@ -97,7 +97,7 @@ h3.section-subheading {
 .about-me,
 .languages-tools,
 .projects {
-	padding        : 0em;
+	padding        : 0;
 	padding-bottom : 1em;
 	text-align     : center;
 	font-size      : 1.2em;
@@ -121,7 +121,6 @@ h3.section-subheading {
 		box-shadow : 10px 10px 10px rgba(0, 0, 0, 0.5);
 		transition : all 0.2s ease-in;
 	}
-
 }
 
 @media (hover : none) {
@@ -213,7 +212,7 @@ h3.section-subheading {
 
 /* Projects */
 .project {
-	margin-bottom    : 2em;
+	margin-bottom    : 1em;
 	padding          : 2em;
 	padding-left     : 1em;
 	padding-right    : 1em;
@@ -360,12 +359,13 @@ footer {
 	justify-content         : center;
 	align-items             : center;
 	background-color        : #222;
+	text-shadow             : #121212 3px 3px 10px;
 	color                   : var(--ProjectTextColor);
 	border-top              : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
 	border-right            : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
 	border-left             : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
-	border-top-left-radius  : 20px;
-	border-top-right-radius : 20px;
+	border-top-left-radius  : 30px;
+	border-top-right-radius : 30px;
 	padding                 : 20px;
 	padding-top             : 10px;
 	padding-bottom          : 10px;

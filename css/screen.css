@@ -65,7 +65,11 @@ screen and (max-height: 500px) {
 	}
 
 	.navigation-bar a {
-		padding-left  : 5px;
-		padding-right : 5px;
+		padding-left  : 8px;
+		padding-right : 8px;
+	}
+
+	.navigation-bar a.active {
+		border-radius : 15px;
 	}
 }

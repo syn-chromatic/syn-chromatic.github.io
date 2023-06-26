@@ -30,6 +30,12 @@ header {
 	border        : none;
 }
 
+br1::before {
+	content : "";
+	display : block;
+	height  : 0em;
+}
+
 a {
 	color           : var(--RedAccent1);
 	text-decoration : none;
