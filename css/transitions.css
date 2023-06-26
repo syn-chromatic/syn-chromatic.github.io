@@ -94,3 +94,23 @@
 .languages-tools:hover {
 	transition : all 0.2s ease-in;
 }
+
+.profile-info {
+	transition : all 0.3s ease-in-out;
+}
+
+.profile-description {
+	transition : all 0.3s ease-in-out;
+}
+
+.profile-name {
+	transition : all 0.3s ease-in-out;
+}
+
+.profile-field {
+	transition : all 0.3s ease-in-out;
+}
+
+.profile-picture {
+	transition : all 0.3s ease-in-out;
+}

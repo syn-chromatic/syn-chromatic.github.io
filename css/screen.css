@@ -45,8 +45,24 @@ screen and (max-height: 800px) {
 	}
 }
 
-@media screen and (max-width: 500px),
-screen and (max-height: 500px) {
+
+@media screen and (max-width: 550px) {
+	.profile-name {
+		font-size  : 24px;
+		text-align : center;
+		display    : block;
+	}
+
+	.profile-field {
+		font-size  : 14px;
+		text-align : center;
+		display    : block;
+	}
+}
+
+
+@media screen and (max-width: 450px),
+screen and (max-height: 450px) {
 	.sidebar.inactive {
 		left : -286px;
 	}
@@ -56,6 +72,11 @@ screen and (max-height: 500px) {
 	.projects,
 	.top-bar {
 		width : 85%;
+	}
+
+	.profile-picture {
+		width  : 80px;
+		height : 80px;
 	}
 }
 
@@ -71,5 +92,14 @@ screen and (max-height: 500px) {
 
 	.navigation-bar a.active {
 		border-radius : 15px;
+	}
+
+	.profile-picture {
+		width  : 60px;
+		height : 60px;
+	}
+
+	.profile-info {
+		padding : 0.8em;
 	}
 }

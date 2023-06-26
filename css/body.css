@@ -158,6 +158,48 @@ h3.section-subheading {
 }
 
 
+.profile-info {
+	display         : flex;
+	justify-content : center;
+	align-items     : center;
+	width           : max-content;
+	margin-left     : auto;
+	margin-right    : auto;
+	margin-bottom   : 2em;
+	padding         : 1em;
+	border-top      : 2px solid var(--GreyAccent1);
+	border-bottom   : 2px solid var(--GreyAccent1);
+	border-right    : 2px solid var(--GreyAccent1);
+	border-left     : 2px solid var(--GreyAccent1);
+	border-radius   : 30px;
+}
+
+.profile-description {
+	display      : block;
+	padding-left : 1em;
+}
+
+.profile-name {
+	font-size  : 32px;
+	text-align : center;
+	display    : block;
+}
+
+.profile-field {
+	font-size  : 16px;
+	text-align : center;
+	display    : block;
+}
+
+.profile-picture {
+	width           : 100px;
+	height          : 100px;
+	border-radius   : 50%;
+	border          : 2px solid #afafaf;
+	background-size : cover;
+}
+
+
 /* Languages and Tools */
 .language-grid,
 .tool-grid {
