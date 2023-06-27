@@ -70,7 +70,8 @@ screen and (max-height: 450px) {
 	.about-me,
 	.languages-tools,
 	.projects,
-	.top-bar {
+	.top-bar,
+	footer {
 		width : 85%;
 	}
 
