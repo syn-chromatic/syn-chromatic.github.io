@@ -1,5 +1,5 @@
 .top-bar {
-	background-color           : #191919;
+	background                 : linear-gradient(120deg, #191919 0%, #2a2a2a 100%);
 	padding                    : 30px 50px;
 	border-bottom              : 6px solid var(--GreyAccent1);
 	border-right               : 1px solid var(--GreyAccent1);

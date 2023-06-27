@@ -396,34 +396,40 @@ img {
 
 /* Footer */
 footer {
-	display                 : flex;
-	flex-direction          : column;
-	justify-content         : center;
-	align-items             : center;
-	background-color        : #222;
-	text-shadow             : #121212 3px 3px 10px;
-	color                   : var(--ProjectTextColor);
-	border-top              : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
-	border-right            : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
-	border-left             : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 20%);
-	border-top-left-radius  : 30px;
-	border-top-right-radius : 30px;
-	padding                 : 20px;
-	padding-top             : 10px;
-	padding-bottom          : 10px;
-	width                   : 80%;
-	max-width               : 960px;
-	font-size               : 0.95em;
-	bottom                  : 0;
-	left                    : 0;
+	display             : flex;
+	flex-direction      : column;
+	justify-content     : center;
+	align-items         : center;
+	background          : linear-gradient(120deg, #212121 0%, #2a2a2a 100%);
+	text-shadow         : #121212 3px 3px 10px;
+	color               : var(--ProjectTextColor);
+	border-top          : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 10%);
+	border-right        : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
+	border-left         : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 10%);
+	border-bottom       : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
+	border-radius       : 20px;
+	padding             : 20px;
+	padding-top         : 5px;
+	padding-bottom      : 5px;
+	width               : 80%;
+	max-width           : 960px;
+	font-size           : 0.95em;
+	bottom              : 0;
+	left                : 0;
+	margin-bottom       : 5px;
+	filter              : drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+	backface-visibility : hidden;
 }
+
 
 footer a {
 	color           : var(--RedAccent1);
 	text-decoration : none;
+	transition      : color 0.3s ease-in-out, transform 0.3s ease-in-out;
+	position        : relative;
 }
 
 footer a:hover {
-	color           : var(--RedAccent1);
-	text-decoration : underline;
+	color     : white;
+	transform : scale(1.05);
 }
