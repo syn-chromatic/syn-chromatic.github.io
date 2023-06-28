@@ -8,7 +8,7 @@
 body {
 	font-family    : 'Montserrat', Arial, sans-serif;
 	line-height    : 1.6;
-	background     : var(--BackgroundDark);
+	background     : linear-gradient(120deg, var(--BackgroundDark1) 0%, var(--BackgroundDark2) 100%);
 	color          : var(--TextColorLight);
 	font-size      : 16px;
 	min-height     : 100vh;

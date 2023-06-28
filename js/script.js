@@ -445,9 +445,11 @@ class TouchBehavior {
 		var sectionItems = [projects, aboutMe, languagesTools];
 
 		sectionItems.forEach((sectionElem) => {
-			sectionElem.addEventListener("touchstart", () => {
-				this.updateStates(sectionElem);
-			});
+			if (sectionElem) {
+				sectionElem.addEventListener("touchstart", () => {
+					this.updateStates(sectionElem);
+				});
+			}
 		});
 	}
 
