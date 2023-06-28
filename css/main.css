@@ -5,6 +5,10 @@
 	-webkit-touch-callout : default;
 }
 
+html {
+	background : var(--BackgroundDark1);
+}
+
 body {
 	font-family    : 'Montserrat', Arial, sans-serif;
 	line-height    : 1.6;
