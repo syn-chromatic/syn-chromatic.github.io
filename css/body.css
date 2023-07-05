@@ -213,6 +213,7 @@ h3.section-subheading {
 	align-items      : center;
 	margin-bottom    : 0.2em;
 	padding          : 0.5em;
+	padding-left     : 1em;
 	background-color : #2a2a2a;
 	color            : var(--TextColorLight);
 	border-radius    : 20px;
