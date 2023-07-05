@@ -258,11 +258,11 @@ h3.section-subheading {
 	padding          : 2em;
 	padding-left     : 1em;
 	padding-right    : 1em;
-	padding-top      : 2em;
-	padding-bottom   : 2.5em;
+	padding-top      : 1.5em;
+	padding-bottom   : 1.5em;
 	background-color : #2a2a2a;
 	border-radius    : 30px;
-	box-shadow       : 5px 5px 10px rgba(10, 10, 10, 0.4);
+	box-shadow       : 5px 10px 5px rgba(10, 10, 10, 0.4);
 	transition       : all 0.8s ease-out;
 	border           : none;
 	color            : var(--TextColorLight);
@@ -409,8 +409,8 @@ footer {
 	border-bottom       : 2px solid color-mix(in SRGB, var(--GreyAccent1), transparent 50%);
 	border-radius       : 20px;
 	padding             : 20px;
-	padding-top         : 5px;
-	padding-bottom      : 5px;
+	padding-top         : 8px;
+	padding-bottom      : 8px;
 	width               : 80%;
 	max-width           : 960px;
 	font-size           : 0.95em;
@@ -422,7 +422,7 @@ footer {
 }
 
 footer a {
-	color           : var(--RedAccent1);
+	color           : #f88d84;
 	text-decoration : none;
 	transition      : color 0.3s ease-in-out, transform 0.3s ease-in-out;
 	position        : relative;

@@ -1,12 +1,12 @@
 :root {
 	--SideBarWidth            : 14em;
 	--SideBarPaddingLeft      : 3em;
-	--RedAccent1              : #bf506c;
-	--GreyAccent1             : #909090;
+	--RedAccent1              : #cd5c5c;
+	--GreyAccent1             : #f3eed9c4;
 	--GreyAccent2             : #a5a5a5;
 	--GreyBlueAccent1         : #282c34;
 	--BackgroundDark1         : #121212;
-	--BackgroundDark2         : #161616;
+	--BackgroundDark2         : #171717;
 	--TextColorLight          : #f5f5f5;
 	--HeaderBackground        : #282c34;
 	--HeaderColor             : #fff;
