@@ -192,13 +192,21 @@ h3.section-subheading {
 }
 
 .profile-picture {
+	display         : flex;
+	align-items     : center;
+	justify-content : center;
 	width           : 100px;
 	height          : 100px;
 	border-radius   : 50%;
 	border          : 2px solid #afafaf;
-	background-size : cover;
+	overflow        : hidden;
 }
 
+.profile-picture img {
+	width      : 115%;
+	height     : 115%;
+	object-fit : cover;
+}
 
 /* Languages and Tools */
 .language-grid,
