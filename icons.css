@@ -13,7 +13,7 @@
 .devicon-sqlalchemy-plain:before,
 .devicon-docker-plain:before {
 	content         : "";
-	background-size : contain;
+	background-size : cover;
 	display         : inline-block;
 	width           : 100%;
 	height          : 100%;
