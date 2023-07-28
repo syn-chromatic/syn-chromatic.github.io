@@ -6,7 +6,7 @@
 .devicon-html-plain:before,
 .devicon-css-plain:before,
 .devicon-javascript-plain:before,
-.devicon-sqlite-plain:before,
+.devicon-sql-plain:before,
 .devicon-vscode-plain:before,
 .devicon-intellij-plain:before,
 .devicon-vtune-plain:before,
@@ -51,7 +51,7 @@
 	background-image : url("/media/icons/javascript-icon.png");
 }
 
-.devicon-sqlite-plain:before {
+.devicon-sql-plain:before {
 	background-image : url("/media/icons/sql-icon.svg");
 }
 
