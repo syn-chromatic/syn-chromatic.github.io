@@ -1,0 +1,5 @@
+title: Portfolio
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
